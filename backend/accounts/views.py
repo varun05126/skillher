@@ -14,6 +14,7 @@ from .serializers import (
     PasswordResetConfirmSerializer
 )
 from .models import User, Profile, Notification
+from .permissions import IsOwnerOrReadOnly
 
 User = get_user_model()
 
@@ -56,7 +57,7 @@ class LogoutView(APIView):
 
 class UserViewSet(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
 
     def get_object(self):
         return self.request.user
@@ -64,7 +65,7 @@ class UserViewSet(generics.RetrieveUpdateAPIView):
 
 class ProfileViewSet(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
 
     def get_object(self):
         return self.request.user.profile
@@ -80,7 +81,7 @@ class NotificationViewSet(generics.ListAPIView):
 
 class NotificationDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NotificationSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
 
     def get_queryset(self):
         return Notification.objects.filter(user=self.request.user)
