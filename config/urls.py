@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/learning/', include('learning.urls')),
     path('api/resources/', include('resources.urls')),
     path('api/analytics/', include('analytics.urls')),
+    path('api/ai/', include('ai.urls')),
 ]
 
 if settings.DEBUG:
