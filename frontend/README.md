@@ -30,6 +30,6 @@ This is the frontend for the SkillHer project, built with React 19, TypeScript, 
 - Authentication (login, registration, JWT)
 - Profile management
 - Skill assessment
-- AI-powered career recommendations
+- Skill recommendations
 - Responsive design with glassmorphism
 - Modern UI with gradients and animations
