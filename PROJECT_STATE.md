@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-SkillHer is an AI-powered women career development platform built using:
+SkillHer is an AI-powered women skill development and recommendation platform built using:
 
 * Django 5+
 * Django REST Framework
@@ -17,7 +17,7 @@ SkillHer is an AI-powered women career development platform built using:
 
 ### Vision
 
-Empower women through AI-powered career guidance, skill assessment, personalized learning roadmaps, mentorship, and career readiness tracking.
+Empower women through AI-powered skill development, skill assessment, personalized learning roadmaps, skill recommendations, and learning analytics.
 
 ---
 
@@ -98,9 +98,11 @@ Models:
 Features:
 
 * Skill Assessment
-* AI Recommendations
+* AI Skill Recommendations
 * Recommendation History
-* Career Suggestions
+* Skill Development Guidance
+
+Note: The CareerPath model stores structured progression pathways and recommendation data used for skill development and learning guidance. The AIRecommendation model generates personalized skill recommendations based on assessment results and learning goals.
 
 ### Learning
 
@@ -123,11 +125,12 @@ Features:
 * Progress Tracking
 * Learning Analytics
 
-### Career
+### Skill Advancement
 
 Features:
 
-* Career Management
+* Skill Progress Tracking
+* Learning Pathway Management
 
 ---
 
@@ -248,6 +251,8 @@ SkillAssessment
 CareerPath
 
 AIRecommendation
+
+Note: The CareerPath model stores structured progression pathways and recommendation data used for skill development and learning guidance. The AIRecommendation model generates personalized skill recommendations based on assessment results and learning goals.
 
 ### Learning
 

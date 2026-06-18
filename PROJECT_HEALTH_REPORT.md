@@ -38,10 +38,12 @@
 - CareerPath Model: 90% complete
 - AIRecommendation Model: 100% complete
 - Skill Assessment Endpoint: 100% complete
-- Recommendation Generation Endpoint: 95% complete
-- Recommendation History Endpoint: 100% complete
+- Skill Recommendation Generation Endpoint: 95% complete
+- Skill Recommendation History Endpoint: 100% complete
 - Groq AI Service: 80% complete (prompt engineering could be improved)
 - Data Validation: 90% complete
+
+Note: The CareerPath model stores structured skill progression pathways and learning recommendation data. The AIRecommendation model generates personalized skill recommendations based on assessment results and learning goals.
 
 ## Deployment Readiness: 30%
 - Render Configuration: 100% complete (render.yaml, build.sh)

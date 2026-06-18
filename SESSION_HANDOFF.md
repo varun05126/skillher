@@ -20,9 +20,9 @@
 - Profile Management
 - Permissions System
 - Notification Model
-- AI Recommendation Module (Skill, SkillAssessment, CareerPath, AIRecommendation models)
+- AI Skill Recommendation Module (Skill, SkillAssessment, CareerPath, AIRecommendation models)
 - Skill Assessment API
-- Recommendation History API
+- Skill Recommendation History API
 - Groq AI Integration
 
 ### Frontend
@@ -37,8 +37,8 @@
 - Registration Page with form validation and email verification flow
 - Profile Setup Page for completing user information
 - Skill Assessment Page with dynamic skill rating interface
-- AI Dashboard for viewing and generating AI career recommendations
-- Recommendation History Page for tracking past recommendations
+- AI Dashboard for viewing and generating AI skill recommendations
+- Skill Recommendation History Page for tracking past skill recommendations
 - Authentication Hook (useAuth) with Axios interceptors for JWT
 - Protected Routes middleware
 - Responsive design for mobile and desktop
@@ -54,7 +54,7 @@
 - API integration testing pending (end-to-end testing of frontend-backed communication)
 
 ### General
-- End-to-end testing pending (full user flows: registration → assessment → recommendation)
+- End-to-end testing pending (full user flows: registration → assessment → skill recommendation)
 - Production deployment pending (deploy to Render with PostgreSQL)
 
 ## Files Modified Today
@@ -122,7 +122,7 @@ Phase 6: Resource Library
 
 Phase 7: Analytics Dashboard
 - Progress tracking models
-- Analytics API for skill growth and career readiness
+- Analytics API for skill growth and learning progress
 - Frontend: Dashboard with charts and progress visualization
 
 Phase 8: Final UI Polish
@@ -151,7 +151,7 @@ Backend:
 - DEBUG (True/False)
 - DATABASE_URL (PostgreSQL connection string)
 - ALLOWED_HOSTS (comma-separated list of domains)
-- GROQ_API_KEY (for AI recommendations)
+- GROQ_API_KEY (for AI skill recommendations)
 - CORS_ALLOWED_ORIGINS (comma-separated list of allowed origins)
 
 Frontend:

@@ -39,7 +39,7 @@ After verification, begin work on the next pending phase:
 - Create Learning Goal models and API endpoints in the `learning` app.
 - Create Learning Roadmap models and API endpoints.
 - Build frontend components for creating, viewing, and tracking learning roadmaps.
-- Integrate with AI Recommendations to generate personalized learning paths based on skill gaps.
+- Integrate with AI Skill Recommendations to generate personalized learning paths based on skill gaps.
 - Add progress tracking functionality (completion percentages, milestones).
 
 ### 5. Update Documentation

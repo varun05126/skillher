@@ -8,31 +8,31 @@ This literature review examines recent research on artificial intelligence appli
 
 ## Introduction
 
-The rapid advancement of artificial intelligence has transformed career development and education landscapes, offering unprecedented opportunities for personalized guidance and skill enhancement. However, women continue to face unique challenges in career progression, including skill gaps, limited access to mentorship, and systemic barriers in male-dominated industries. This literature review investigates current research at the intersection of AI, career development, and women's empowerment to inform the design of SkillHer—a comprehensive platform designed to address these challenges through AI-powered personalized career guidance, skill assessment, adaptive learning pathways, and mentorship support.
+The rapid advancement of artificial intelligence has transformed education and skill development landscapes, offering unprecedented opportunities for personalized learning and skill enhancement. However, women continue to face unique challenges in skill development progression, including skill gaps, limited access to mentorship, and systemic barriers in male-dominated industries. This literature review investigates current research at the intersection of AI, skill development, and women's empowerment to inform the design of SkillHer—a comprehensive platform designed to address these challenges through AI-powered personalized skill guidance, skill assessment, adaptive learning pathways, and mentorship support.
 
-The review focuses on publications from 2023-2026 that examine AI applications in career guidance, personalized learning systems, skill gap analysis, and adaptive learning technologies. By synthesizing findings across these domains, this review identifies effective methodologies, highlights limitations of existing approaches, and establishes a foundation for developing an integrated solution specifically tailored to women's career development needs.
+The review focuses on publications from 2023-2026 that examine AI applications in skill guidance, personalized learning systems, skill gap analysis, and adaptive learning technologies. By synthesizing findings across these domains, this review identifies effective methodologies, highlights limitations of existing approaches, and establishes a foundation for developing an integrated solution specifically tailored to women's skill development needs.
 
 ## Problem Statement
 
-Despite significant advances in AI-driven educational and career development tools, women continue to experience disproportionate barriers in career advancement. Key challenges include:
+Despite significant advances in AI-driven educational and skill development tools, women continue to experience disproportionate barriers in skill advancement. Key challenges include:
 
 1. **Persistent Skill Gaps**: Women often lack access to targeted upskilling opportunities that align with evolving market demands, particularly in technology and leadership roles.
 
-2. **Limited Personalized Guidance**: Existing career development platforms frequently offer generic recommendations that fail to account for individual learning styles, career aspirations, and contextual barriers faced by women.
+2. **Limited Personalized Guidance**: Existing skill development platforms frequently offer generic recommendations that fail to account for individual learning styles, skill aspirations, and contextual barriers faced by women.
 
-3. **Inadequate Skill Assessment**: Current assessment methods often fail to comprehensively evaluate both technical and soft skills critical for career success, particularly in identifying transferable skills and potential.
+3. **Inadequate Skill Assessment**: Current assessment methods often fail to comprehensively evaluate both technical and soft skills critical for skill success, particularly in identifying transferable skills and potential.
 
 4. **Fragmented Learning Pathways**: Women frequently encounter disjointed learning experiences that lack coherence, progression tracking, and adaptation to individual progress.
 
-5. **Insufficient Mentorship Access**: Limited availability of role models and mentors, particularly in STEM fields, hinders women's career development and retention.
+5. **Insufficient Mentorship Access**: Limited availability of role models and mentors, particularly in STEM fields, hinders women's skill development and retention.
 
-6. **Lack of Integrated Solutions**: Existing tools typically address isolated aspects of career development (e.g., job matching or skill training) without providing holistic, end-to-end career development support.
+6. **Lack of Integrated Solutions**: Existing tools typically address isolated aspects of skill development (e.g., skill matching or skill training) without providing holistic, end-to-end skill development support.
 
-These challenges necessitate an integrated AI-powered platform that combines personalized skill assessment, adaptive learning recommendations, career guidance, and mentorship support specifically designed for women's unique career development journeys.
+These challenges necessitate an integrated AI-powered platform that combines personalized skill assessment, adaptive learning recommendations, skill guidance, and mentorship support specifically designed for women's unique skill development journeys.
 
-## Need for AI-Powered Women Career Development Platforms
+## Need for AI-Powered Women Skill Development Platforms
 
-The need for specialized AI-powered career development platforms for women is supported by several critical factors:
+The need for specialized AI-powered skill development platforms for women is supported by several critical factors:
 
 ### Demographic and Market Trends
 - Women represent approximately 47% of the global workforce but remain underrepresented in leadership positions (29% of senior management roles) and technical fields (28% of STEM workforce).
@@ -40,16 +40,16 @@ The need for specialized AI-powered career development platforms for women is su
 - AI and automation are projected to displace millions of jobs disproportionately held by women, necessitating reskilling and upskilling initiatives.
 
 ### Limitations of Current Solutions
-- Generic career platforms lack personalization and fail to address gender-specific barriers.
-- Traditional career counseling is often inaccessible, expensive, and not scalable.
+- Generic skill development platforms lack personalization and fail to address gender-specific barriers.
+- Traditional skill development guidance is often inaccessible, expensive, and not scalable.
 - Existing e-learning platforms offer standardized content without adaptive pathways based on individual skill gaps and learning preferences.
-- Skill assessment tools frequently focus on technical competencies while neglecting leadership, communication, and adaptive skills crucial for career advancement.
+- Skill assessment tools frequently focus on technical competencies while neglecting leadership, communication, and adaptive skills crucial for skill advancement.
 
 ### Advantages of AI-Powered Approaches
 - **Scalability**: AI systems can provide personalized guidance to thousands of users simultaneously.
-- **Data-Drived Insights**: Machine learning can identify patterns in successful career trajectories and skill development pathways.
+- **Data-Driven Insights**: Machine learning can identify patterns in successful skill trajectories and skill development pathways.
 - **Continuous Adaptation**: Systems can evolve based on user feedback, labor market changes, and emerging skill requirements.
-- **Objective Assessment**: AI can reduce unconscious bias in skill evaluation and career recommendations.
+- **Objective Assessment**: AI can reduce unconscious bias in skill evaluation and skill recommendations.
 - **24/7 Availability**: Digital platforms provide access regardless of geographical location or time constraints.
 
 ## Literature Review
@@ -64,9 +64,9 @@ The need for specialized AI-powered career development platforms for women is su
 * **DOI Link**: https://doi.org/10.1007/s10775-026-09807-0
 * **Official URL**: https://link.springer.com/article/10.1007/s10775-026-09807-0
 
-**Detailed Abstract Summary**: This scoping review examines the current landscape of AI applications in women's career development, analyzing empirical evidence on how AI technologies are integrated into career guidance and organizational decision systems. The study identifies key application areas including skill gap analysis, personalized learning recommendations, job matching algorithms, and bias mitigation in hiring processes. Despite growing implementation, the authors note limited empirical evidence on effectiveness and long-term outcomes, particularly regarding sustained career advancement and retention benefits.
+**Detailed Abstract Summary**: This scoping review examines the current landscape of AI applications in women's skill development, analyzing empirical evidence on how AI technologies are integrated into skill guidance and organizational decision systems. The study identifies key application areas including skill gap analysis, personalized learning recommendations, skill matching algorithms, and bias mitigation in learning processes. Despite growing implementation, the authors note limited empirical evidence on effectiveness and long-term outcomes, particularly regarding sustained skill advancement and retention benefits.
 
-**Methodology**: The authors conducted a scoping review following PRISMA-ScR guidelines, searching major academic databases (IEEE Xplore, ACM Digital Library, SpringerLink, PubMed) for peer-reviewed articles published between 2018-2025. Studies were included if they focused on AI applications specifically designed to support women's career development or advancement. Data extraction focused on application domains, AI methodologies employed, target populations, and reported outcomes.
+**Methodology**: The authors conducted a scoping review following PRISMA-ScR guidelines, searching major academic databases (IEEE Xplore, ACM Digital Library, SpringerLink, PubMed) for peer-reviewed articles published between 2018-2025. Studies were included if they focused on AI applications specifically designed to support women's skill development or advancement. Data extraction focused on application domains, AI methodologies employed, target populations, and reported outcomes.
 
 **Key Findings**:
 1. AI applications for women's career development primarily focus on four areas: skill identification and gap analysis (35%), personalized learning recommendations (28%), job matching and application assistance (22%), and bias reduction in recruitment (15%).
