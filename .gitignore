@@ -152,6 +152,11 @@ secret.key
 secrets.json
 credentials.json
 
+# API Keys
+
+*.pem
+*.key
+
 # =========================
 
 # AI / Local Development
@@ -161,3 +166,38 @@ credentials.json
 .cursor/
 .claude/
 .anthropic/
+
+# Claude MCP
+
+.mcp.json
+
+# Playwright MCP
+
+.playwright-mcp/
+
+# =========================
+
+# Research Artifacts
+
+# =========================
+
+temp_papers.json
+paper_metadata.json
+research_cache.json
+
+# Optional temporary literature-review files
+
+PAPER_COLLECTION.md
+FINAL_SELECTED_PAPERS.md
+PAPER_SELECTION_CRITERIA.md
+RESEARCH_NOTES.md
+CANDIDATE_PAPERS.md
+
+# =========================
+
+# OS Files
+
+# =========================
+
+Thumbs.db
+Desktop.ini
