@@ -16,7 +16,12 @@ const RecommendationHistoryPage: React.FC = () => {
       try {
         const response = await fetch('/api/ai/recommendations/');
         const data = await response.json();
-        setRecommendations(data);
+        if (Array.isArray(data)) {
+          setRecommendations(data);
+        } else {
+          console.error('Expected an array of recommendations');
+          setRecommendations([]);
+        }
       } catch (err) {
         setError('Failed to load recommendations');
       } finally {
@@ -108,7 +113,11 @@ const RecommendationHistoryPage: React.FC = () => {
                       </div>
                       <div className="flex justify-between">
                         <div className="space-y-1">
-                          {Object.entries((rec.skill_gap || {}) as Record<string, number>).map(([skill, gap]: [string, number]) => (
+                          {Object.entries(
+                            typeof rec.skill_gap === 'object' && rec.skill_gap !== null
+                              ? (rec.skill_gap as Record<string, number>)
+                              : {}
+                          ).map(([skill, gap]: [string, number]) => (
                             <div key={skill} className="flex justify-between text-xs">
                               <span>{skill}</span>
                               <span className={`whitespace-nowrap ${gap >= 80 ? 'text-red-400' : gap >= 60 ? 'text-yellow-400' : 'text-green-400'}`}>
@@ -127,7 +136,11 @@ const RecommendationHistoryPage: React.FC = () => {
                     <div className="mt-3 pt-3 border-t border-white/10">
                       <h4 className="text-white font-medium mb-2">3-Month Roadmap</h4>
                       <div className="space-y-3">
-                        {Object.entries(rec.roadmap || {}).map(([month, data]: [string, any]) => (
+                        {Object.entries(
+                          typeof rec.roadmap === 'object' && rec.roadmap !== null
+                            ? (rec.roadmap as Record<string, any>)
+                            : {}
+                        ).map(([month, data]: [string, any]) => (
                           <div key={month}>
                             <h5 className="text-white font-medium">{month.replace('_', ' ')}</h5>
                             <p className="text-white/70 text-sm">{data.goal || ''}</p>

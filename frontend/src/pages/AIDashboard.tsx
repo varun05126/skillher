@@ -49,7 +49,11 @@ const AIDashboard: React.FC = () => {
             const recentAssessments = assessmentsData
               .slice(0, 6)
               .map((assessment: any) => {
-                const scoreValues = Object.values(assessment.scores || {}) as number[];
+                const scoreValues = Array.isArray(assessment.scores)
+                  ? (assessment.scores as number[])
+                  : typeof assessment.scores === 'object' && assessment.scores !== null
+                  ? Object.values(assessment.scores) as number[]
+                  : [];
                 const avg =
                   scoreValues.length > 0
                     ? scoreValues.reduce((a: number, b: number) => a + b, 0) / scoreValues.length
@@ -304,7 +308,9 @@ const AIDashboard: React.FC = () => {
                     <strong>Skill Gap:</strong>
                     <div className="mt-2 space-y-1">
                       {Object.entries(
-                        (recommendations[0].skill_gap || {}) as Record<string, number>
+                        typeof recommendations[0]?.skill_gap === 'object' && recommendations[0].skill_gap !== null
+                          ? (recommendations[0].skill_gap as Record<string, number>)
+                          : {}
                       ).map(([skill, gap]: [string, number]) => (
                         <div key={skill} className="flex justify-between text-sm">
                           <span>{skill}</span>
@@ -436,13 +442,17 @@ const AIDashboard: React.FC = () => {
                           Top gap:{' '}
                           {
                             Object.entries(
-                              (rec.skill_gap || {}) as Record<string, number>
+                              typeof rec.skill_gap === 'object' && rec.skill_gap !== null
+                                ? (rec.skill_gap as Record<string, number>)
+                                : {}
                             ).reduce((a, b) => (a[1] > b[1] ? a : b))[0]
                           }{' '}
                           (
                           {Math.max(
                             ...Object.values(
-                              (rec.skill_gap || {}) as Record<string, number>
+                              typeof rec.skill_gap === 'object' && rec.skill_gap !== null
+                                ? (rec.skill_gap as Record<string, number>)
+                                : {}
                             )
                           )}
                           %)
