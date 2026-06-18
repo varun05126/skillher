@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 # Literature Review: SkillHer – AI-Powered Women Skill Development Platform
-=======
+
 # Literature Review: AI-Powered Women Career Development Platform (SkillHer)
->>>>>>> 1228ee3 (docs: finalize literature review and project documentation)
 
 ## Abstract
 
