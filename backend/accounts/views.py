@@ -38,8 +38,14 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
-    # We can use the default TokenObtainPairView, but if we want to add extra data, we can override.
-    # For now, we use the default.
+
+    def post(self, request, *args, **kwargs):
+        # Allow login with email instead of username
+        email = request.data.get('email')
+        if email:
+            request.data['username'] = email
+
+        return super().post(request, *args, **kwargs)
 
 
 class LogoutView(APIView):
