@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Navigate, useLocation, Route } from 'react-router-dom';
+import { Navigate, useLocation, Route, Routes } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 import LandingPage from '../pages/LandingPage';
