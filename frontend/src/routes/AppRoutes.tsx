@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Navigate, useLocation, Route, Routes } from 'react-router-dom';
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 import LandingPage from '../pages/LandingPage';
@@ -10,50 +10,43 @@ import SkillAssessmentPage from '../pages/SkillAssessmentPage';
 import AIDashboard from '../pages/AIDashboard';
 import RecommendationHistoryPage from '../pages/RecommendationHistoryPage';
 
-// Public route component that redirects to dashboard if authenticated (for landing, login, register)
-const PublicRoute: React.FC<{ path: string; element: ReactNode }> = ({ path, element }) => {
+const PublicRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user } = useAuth();
   const location = useLocation();
 
   if (user) {
-    // If user is logged in and trying to access login/register/landing, redirect to dashboard
     const from = location.state?.from?.pathname || '/dashboard';
     return <Navigate to={from} replace />;
   }
 
-  return <Route path={path} element={element} />;
+  return <>{children}</>;  // FIX: wrap in fragment for React 18 compatibility
 };
 
-// Private route component that redirects to login if not authenticated
-const PrivateRoute: React.FC<{ path: string; element: ReactNode }> = ({ path, element }) => {
+const PrivateRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
   if (loading) {
-    // While loading, show a loading message in the route
-    return <Route path={path} element={<div className="flex h-[60vh] items-center justify-center">Loading...</div>} />;
+    return <div className="flex h-[60vh] items-center justify-center">Loading...</div>;
   }
 
-  return user ? <Route path={path} element={element} /> : <Navigate to="/login" state={{ from: location }} replace />;
+  return user ? <>{children}</> : <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 const AppRoutes: React.FC = () => {
   return (
-    <Routes>
-      {/* Public routes (landing, login, register) */}
-      <PublicRoute path="/" element={<LandingPage />} />
-      <PublicRoute path="/login" element={<LoginPage />} />
-      <PublicRoute path="/register" element={<RegisterPage />} />
-      <PublicRoute path="/profile-setup" element={<ProfileSetupPage />} />
+    <Routes>  {/* FIX: Routes and Route now imported */}
+      <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
+      <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+      <Route path="/profile-setup" element={<PublicRoute><ProfileSetupPage /></PublicRoute>} />
 
-      {/* Protected routes (requires authentication) */}
-      <PrivateRoute path="/dashboard" element={<AIDashboard />} />
-      <PrivateRoute path="/assessment" element={<SkillAssessmentPage />} />
-      <PrivateRoute path="/profile" element={<ProfileSetupPage />} />
-      <PrivateRoute path="/recommendations" element={<RecommendationHistoryPage />} />
+      <Route path="/dashboard" element={<PrivateRoute><AIDashboard /></PrivateRoute>} />
+      <Route path="/assessment" element={<PrivateRoute><SkillAssessmentPage /></PrivateRoute>} />
+      <Route path="/profile" element={<PrivateRoute><ProfileSetupPage /></PrivateRoute>} />
+      <Route path="/recommendations" element={<PrivateRoute><RecommendationHistoryPage /></PrivateRoute>} />
 
-      {/* Fallback for 404 - redirect to landing */}
-      <Navigate to="/" replace />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
