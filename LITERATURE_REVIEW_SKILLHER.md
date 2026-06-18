@@ -546,12 +546,12 @@ The reviewed literature confirms that AI technologies have demonstrated effectiv
 
 SkillHer responds to these gaps through an integrated technical architecture combining React, TypeScript, Tailwind CSS, Django, Django REST Framework, JWT authentication, and Groq AI to deliver a comprehensive women-focused skill development platform. By uniting skill assessment, personalized learning recommendations, learning resource curation, career guidance, and mentorship within a single ethical AI framework, SkillHer moves beyond the limitations of existing fragmented solutions.
 
-<<<<<<< HEAD
+
 ---
 *Literature Review Prepared for: SkillHer Project*
 *Date: [Date]*
 *Version: 1.0*
-=======
+
 The platform's innovation lies not just in its technical implementation, but in its holistic approach to women's career development—recognizing that skill acquisition must be connected to career advancement, supported by community, and validated through real-world application. Through longitudinal tracking, bias mitigation strategies, and practical skill transfer mechanisms, SkillHer aims to create measurable impact on women's career progression and representation in leadership and technical fields.
 
 As AI continues to evolve, platforms like SkillHer represent the next generation of educational technology—one that combines technological sophistication with deep understanding of the human and systemic factors that influence career development. By grounding its design in current research while innovating to address identified gaps, SkillHer offers a promising pathway toward more equitable and effective women's skill development in the AI era.
@@ -577,4 +577,3 @@ As AI continues to evolve, platforms like SkillHer represent the next generation
 [9] I. Gligorea, M. Cioca, R. Oancea, A.-T. Gorski, H. Gorski, and P. Tudorache, "Adaptive learning using artificial intelligence in e-learning: A literature review," *Education Sciences*, vol. 13, no. 12, art. no. 1216, Dec. 2023, doi: 10.3390/educsci13121216.
 
 [10] R. Sajja, Y. Sermet, M. Cikmaz, D. Cwiertny, and I. Demir, "Artificial intelligence-enabled intelligent assistant for personalized and adaptive learning in higher education," *Information*, vol. 15, no. 10, art. no. 596, Oct. 2024, doi: 10.3390/info15100596.
->>>>>>> 1228ee3 (docs: finalize literature review and project documentation)
