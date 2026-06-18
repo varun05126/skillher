@@ -19,6 +19,10 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Serve React frontend for any non-API routes (for client-side routing)
+# React frontend routes only
 urlpatterns += [
-    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
+    re_path(
+        r'^(?!api/)(?!admin/)(?!static/)(?!media/)(?!assets/).*$',
+        TemplateView.as_view(template_name='index.html')
+    ),
 ]
