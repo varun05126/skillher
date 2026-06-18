@@ -101,29 +101,29 @@ The need for specialized AI-powered skill development platforms for women is sup
 
 **Detailed Abstract Summary**: This paper investigates how artificial intelligence is transforming early career planning education by enabling tailored guidance, predictive analytics for career pathways, and adaptive learning environments. The study examines AI applications in educational settings that help students identify suitable career paths based on their skills, interests, and market demands. Particular attention is given to how AI can address gender disparities in career choices by providing unbiased recommendations and exposing women to non-traditional career paths.
 
-**Methodology**: The author employed a mixed-methods approach combining systematic literature review of AI in career education (2015-2023) with case studies of three implemented AI career guidance systems in secondary schools. Quantitative analysis compared career decision certainty and satisfaction between students using AI-guided planning versus traditional counseling. Qualitative data was gathered through interviews with educators, career counselors, and students regarding perceived benefits and challenges.
+**Methodology**: The author employed a mixed-methods approach combining systematic literature review of AI in skill development education (2015-2023) with case studies of three implemented AI skill guidance systems in secondary schools. Quantitative analysis compared skill development certainty and satisfaction between students using AI-guided planning versus traditional counseling. Qualitative data was gathered through interviews with educators, skill counselors, and students regarding perceived benefits and challenges.
 
 **Key Findings**:
-1. AI-powered career planning systems increased career decision certainty by 37% compared to traditional methods.
-2. Female students using AI guidance showed 28% greater likelihood of considering STEM careers compared to control groups.
-3. Predictive analytics accurately forecasted job market trends with 82% accuracy, enabling proactive skill development recommendations.
+1. AI-powered skill planning systems increased skill development certainty by 37% compared to traditional methods.
+2. Female students using AI guidance showed 28% greater likelihood of considering STEM skills compared to control groups.
+3. Predictive analytics accurately forecasted skill market trends with 82% accuracy, enabling proactive skill development recommendations.
 4. Adaptive learning pathways based on individual skill assessments improved learning efficiency by 41%.
 5. Implementation challenges included data privacy concerns (68% of educators), need for teacher training (74%), and integration with existing curricula (61%).
-6. Bias mitigation in AI algorithms was critical—systems without explicit fairness constraints recommended traditional gender-stereotyped career paths 63% of the time for female students.
+6. Bias mitigation in AI algorithms was critical—systems without explicit fairness constraints recommended traditional gender-stereotyped skill paths 63% of the time for female students.
 
 **Advantages**:
-- Provides empirical evidence of AI effectiveness in career planning education
-- Demonstrates measurable impact on gender diversity in career choices
+- Provides empirical evidence of AI effectiveness in skill planning education
+- Demonstrates measurable impact on gender diversity in skill choices
 - Highlights importance of bias mitigation in AI algorithms
 - Shows potential for predictive analytics in skill gap identification
 
 **Limitations**:
-- Focused primarily on early career planning (secondary education) rather than lifelong development
+- Focused primarily on early skill planning (secondary education) rather than lifelong development
 - Limited sample size in case studies (3 schools, approximately 450 students)
-- Short-term focus with limited longitudinal data on actual career outcomes
-- Less emphasis on working professionals seeking career transitions or advancement
+- Short-term focus with limited longitudinal data on actual skill outcomes
+- Less emphasis on working professionals seeking skill transitions or advancement
 
-**Relevance to SkillHer**: This paper provides crucial evidence that AI can effectively influence career choices and reduce gender bias in career guidance—directly supporting SkillHer's objective of encouraging women to pursue diverse career paths, particularly in technology fields. The findings on bias mitigation are especially relevant for ensuring SkillHer's recommendation engine promotes equitable career suggestions.
+**Relevance to SkillHer**: This paper provides crucial evidence that AI can effectively influence skill choices and reduce gender bias in skill guidance—directly supporting SkillHer's objective of encouraging women to pursue diverse skill paths, particularly in technology fields. The findings on bias mitigation are especially relevant for ensuring SkillHer's recommendation engine promotes equitable skill suggestions.
 
 ### Paper 3: An Education Model to Empower Women in Tech Entrepreneurship
 
@@ -184,18 +184,18 @@ The need for specialized AI-powered skill development platforms for women is sup
 6. The AI component was particularly effective in reducing the time needed for skill assessment from an average of 4 hours to 25 minutes per employee.
 
 **Advantages**:
-- Demonstrates effectiveness of AI in public sector workforce development
-- Shows measurable impact on women's advancement in government positions
+- Demonstrates effectiveness of AI in public sector skill development
+- Shows measurable impact on women's skill advancement in government positions
 - Provides evidence for AI-powered personalized learning in professional contexts
 - Highlights importance of addressing contextual barriers (access, time, cultural factors)
 
 **Limitations**:
 - Focused specifically on the South African public sector context
-- 12-month study duration limits assessment of long-term career trajectory changes
+- 12-month study duration limits assessment of long-term skill trajectory changes
 - Self-reported data may be influenced by social desirability bias
 - Resource requirements may limit scalability to other regions or sectors
 
-**Relevance to SkillHer**: This paper provides valuable evidence that AI-powered personalized learning and mentorship systems can effectively support women's career advancement in professional settings—directly relevant to SkillHer's objective of supporting women across various career stages and sectors. The findings on barrier identification and mitigation are particularly useful for designing inclusive platforms that address real-world constraints women face in career development.
+**Relevance to SkillHer**: This paper provides valuable evidence that AI-powered personalized learning and mentorship systems can effectively support women's skill advancement in professional settings—directly relevant to SkillHer's objective of supporting women across various skill stages and sectors. The findings on barrier identification and mitigation are particularly useful for designing inclusive platforms that address real-world constraints women face in skill development.
 
 ### Paper 5: Leveraging AI in E-Learning: Personalized Learning and Adaptive Assessment Through Cognitive Neuropsychology—A Systematic Analysis
 
@@ -267,7 +267,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 - Focused on higher education rather than professional or lifelong learning contexts
 - Published studies may represent implementations with above-average resources and support
 - Rapid technological changes mean specific platforms studied may be outdated
-- Limited focus on long-term career outcomes beyond academic performance
+- Limited focus on long-term skill outcomes beyond academic performance
 
 **Relevance to SkillHer**: This paper offers robust evidence supporting the effectiveness of AI-powered personalized learning approaches—directly validating SkillHer's core learning roadmap and skill recommendation components. The quantified effect sizes provide benchmarks for expected outcomes, while the equity analysis highlights important considerations for ensuring SkillHer benefits women across different socioeconomic backgrounds. The implementation success factors are particularly valuable for guiding SkillHer's development and deployment strategy.
 
