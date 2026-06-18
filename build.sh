@@ -15,7 +15,7 @@ pip install -r requirements.txt
 # Build frontend
 echo "Building frontend..."
 cd frontend
-export VITE_API_URL=/
+export VITE_API_URL=''
 npm install --legacy-peer-deps
 npm run build
 cd ..
