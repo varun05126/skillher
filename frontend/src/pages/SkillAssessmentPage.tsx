@@ -12,7 +12,7 @@ const SkillAssessmentPage: React.FC = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // Fetch skills from backend
+  // Fetch skills and user assessments from backend
   useEffect(() => {
     const fetchSkills = async () => {
       try {
@@ -24,11 +24,30 @@ const SkillAssessmentPage: React.FC = () => {
       }
     };
 
-    fetchSkills();
-  }, []);
+    const fetchAssessments = async () => {
+      try {
+        const response = await fetch('/api/ai/assessment/');
+        if (response.ok) {
+          const assessmentsData = await response.json();
+          // Assuming assessmentsData is an array of { date: string, scores: Record<string, number> }
+          if (Array.isArray(assessmentsData) && assessmentsData.length > 0) {
+            // Use the most recent assessment for pre-filling the form
+            const latestAssessment = assessmentsData[0];
+            if (latestAssessment.scores) {
+              setSkillScores(latestAssessment.scores);
+            }
+          }
+        } else {
+          console.warn('Failed to fetch assessments');
+        }
+      } catch (err) {
+        console.error('Failed to fetch assessments:', err);
+      }
+    };
 
-  // Initialize scores for existing skills (if any) - we would need to fetch existing assessments, but for now we leave empty
-  // We could fetch the user's assessments and set the scores, but we'll skip for simplicity.
+    fetchSkills();
+    fetchAssessments();
+  }, []);
 
   const handleChange = (skillName: string, value: string) => {
     const score = parseInt(value, 10);

@@ -3,6 +3,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.db.models import Max
+from django.utils.dateformat import format
+from django.utils.timezone import localtime
 from .models import Skill, SkillAssessment, CareerPath, AIRecommendation
 from .serializers import (
     SkillSerializer,
@@ -28,6 +31,20 @@ class SkillListView(generics.ListAPIView):
 
 class SkillAssessmentView(APIView):
     """
+    GET /api/assessment/
+    Get the user's skill assessments grouped by date.
+    Returns: [
+        {
+            "date": "YYYY-MM-DD",
+            "scores": {
+                "Communication": 80,
+                "Python": 90,
+                ...
+            }
+        },
+        ...
+    ]
+
     POST /api/assessment/
     Submit skill scores for the authenticated user.
     Input: {
@@ -88,6 +105,42 @@ class SkillAssessmentView(APIView):
             return 2  # Intermediate
         else:
             return 1  # Beginner
+
+    def get(self, request):
+        """
+        GET /api/assessment/
+        Get the user's skill assessments grouped by date.
+        Returns an array of objects: { date: string (YYYY-MM-DD), scores: Record<string, number> }
+        """
+        user = request.user
+        # Get all assessments for the user, ordered by created_at descending
+        assessments = SkillAssessment.objects.filter(user=user).order_by('-created_at')
+
+        # Group by date (day) and skill, taking the latest score for each skill on each day
+        # We'll use a dictionary: date_string -> { skill_name: score }
+        grouped = {}
+        for assessment in assessments:
+            date_str = localtime(assessment.created_at).strftime('%Y-%m-%d')
+            skill_name = assessment.skill.name
+            if date_str not in grouped:
+                grouped[date_str] = {}
+            # Only set the score if we haven't already set a score for this skill on this day
+            # (since we are iterating from newest to oldest, the first we see is the latest)
+            if skill_name not in grouped[date_str]:
+                grouped[date_str][skill_name] = assessment.score
+
+        # Convert to the format expected by the frontend: array of { date: string, scores: Record<string, number> }
+        result = []
+        for date_str, scores in grouped.items():
+            result.append({
+                'date': date_str,
+                'scores': scores
+            })
+
+        # Sort by date descending (newest first)
+        result.sort(key=lambda x: x['date'], reverse=True)
+
+        return Response(result)
 
 
 class GenerateRecommendationView(APIView):

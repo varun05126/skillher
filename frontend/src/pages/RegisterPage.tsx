@@ -45,7 +45,7 @@ const RegisterPage: React.FC = () => {
               Create Account
             </h2>
             <p className="text-center text-white/80">
-              Join SkillHer to unlock your career potential
+              Join SkillHer to unlock your skill potential
             </p>
           </div>
           <GlassCard className="p-6">

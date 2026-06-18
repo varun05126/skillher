@@ -7,10 +7,9 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <Hero
-        title="Unlock Your Career Potential"
-        subtitle="SkillHer uses AI to analyze your skills and provide personalized career recommendations, learning roadmaps, and skill gap analysis."
-        bgImage="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-      />
+        title="Build Skills. Track Progress. Grow with Confidence."
+        subtitle="SkillHer helps women assess skills, identify improvement areas, receive personalized recommendations, and follow structured learning pathways."
+        bgImage="https://images.unsplash.com/photo-1678082310070-26bdadc06a34?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
       <section className="py-16 bg-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -21,12 +20,12 @@ const LandingPage: React.FC = () => {
             />
             <FeatureCard
               title="AI-Powered Recommendations"
-              description="Get personalized career suggestions and learning roadmaps based on your skill profile."
+              description="Get personalized skill suggestions and learning roadmaps based on your skill profile."
               icon={Sparkles}
             />
             <FeatureCard
               title="Skill Gap Analysis"
-              description="Identify exactly what skills you need to develop for your target career."
+              description="Identify exactly what skills you need to develop for your target skill."
               icon={Brain}
             />
             <FeatureCard
@@ -55,7 +54,7 @@ const LandingPage: React.FC = () => {
                 <Sparkles className="h-5 w-5 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Analyze</h3>
-              <p className="text-white/70">Our AI analyzes your skills and generates personalized career recommendations.</p>
+              <p className="text-white/70">Our AI analyzes your skills and generates personalized skill recommendations.</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -69,9 +68,20 @@ const LandingPage: React.FC = () => {
       </section>
       <section className="py-16 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <a href="/register" className="inline-block bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">
-            Get Started Free
-          </a>
+          <div className="space-x-4">
+            <a
+              href="/assessment"
+              className="inline-block bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105"
+            >
+              Take Skill Assessment
+            </a>
+            <a
+              href="/learning-paths"
+              className="inline-block ml-4 px-8 py-3 bg-transparent text-white font-bold border-2 border-white/50 rounded-lg text-lg transition-transform transform hover:scale-105 hover:border-white/75"
+            >
+              Explore Learning Paths
+            </a>
+          </div>
         </div>
       </section>
     </>

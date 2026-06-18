@@ -67,7 +67,7 @@ const RecommendationHistoryPage: React.FC = () => {
                 No Recommendations Yet
               </h3>
               <p className="text-white/70">
-                Complete your skill assessment to generate personalized AI career recommendations.
+                Complete your skill assessment to generate personalized AI skill recommendations.
               </p>
               <NavLink
                 to="/assessment"
@@ -84,10 +84,19 @@ const RecommendationHistoryPage: React.FC = () => {
                 {recommendations.map((rec) => (
                   <div key={rec.id} className="border-b pb-4 last:border-b-0 last:pb-0">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-white font-medium">{rec.recommended_career_title || 'N/A'}</h3>
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${rec.career_readiness_score >= 80 ? 'bg-green-500/20 text-green-400' : rec.career_readiness_score >= 60 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'}`}>
-                        {rec.career_readiness_score}/100
-                      </span>
+                      <div>
+                        <h3 className="text-white font-medium">{rec.recommended_career_title || 'N/A'}</h3>
+                        <p className="text-white/60 text-sm">
+                          <strong>Recommended Skill:</strong> {rec.recommended_career_title || 'N/A'}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-white/60 text-sm">
+                          <strong>Skill Readiness:</strong> <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${rec.career_readiness_score >= 80 ? 'bg-green-500/20 text-green-400' : rec.career_readiness_score >= 60 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'}`}>
+                            {rec.career_readiness_score}/100
+                          </span>
+                        </p>
+                      </div>
                     </div>
                     <p className="text-white/60 text-sm">
                       {new Date(rec.created_at).toLocaleDateString()}
@@ -109,8 +118,9 @@ const RecommendationHistoryPage: React.FC = () => {
                           ))}
                         </div>
                         <div className="text-right">
-                          <div className="text-xs">{rec.career_readiness_score}</div>
-                          <div className="text-xs text-white/50">/100</div>
+                          <div className="text-xs text-white/70">
+                            <strong>Skill Readiness:</strong> {rec.career_readiness_score}/100
+                          </div>
                         </div>
                       </div>
                     </div>
