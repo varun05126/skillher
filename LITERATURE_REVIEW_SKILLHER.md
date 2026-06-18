@@ -1,4 +1,4 @@
-# Literature Review: SkillHer – AI-Powered Women Career Development Platform
+# Literature Review: SkillHer – AI-Powered Women Skill Development Platform
 
 ## Project Overview
 SkillHer is an AI-powered platform designed to support women's career development through personalized learning pathways, skill gap analysis, AI-driven career guidance, and resource recommendations. This literature review examines current research in AI career guidance, personalized learning systems, skill recommendation technologies, and related domains to inform the platform's design and implementation.
