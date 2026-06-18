@@ -2,20 +2,16 @@ import React, { ReactNode } from 'react';
 import { Navigate, useLocation, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-// Private route component that redirects to login if not authenticated
-const PrivateRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { user, loading } = useAuth();
-  const location = useLocation();
-
-  if (loading) {
-    return <div className="flex h-[60vh] items-center justify-center">Loading...</div>;
-  }
-
-  return user ? children : <Navigate to="/login" state={{ from: location }} replace />;
-};
+import LandingPage from '../pages/LandingPage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import ProfileSetupPage from '../pages/ProfileSetupPage';
+import SkillAssessmentPage from '../pages/SkillAssessmentPage';
+import AIDashboard from '../pages/AIDashboard';
+import RecommendationHistoryPage from '../pages/RecommendationHistoryPage';
 
 // Public route component that redirects to dashboard if authenticated (for landing, login, register)
-const PublicRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
+const PublicRoute: React.FC<{ path: string; element: ReactNode }> = ({ path, element }) => {
   const { user } = useAuth();
   const location = useLocation();
 
@@ -25,40 +21,40 @@ const PublicRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
     return <Navigate to={from} replace />;
   }
 
-  return children;
+  return <Route path={path} element={element} />;
 };
 
-import LandingPage from '../pages/LandingPage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import ProfileSetupPage from '../pages/ProfileSetupPage';
-import SkillAssessmentPage from '../pages/SkillAssessmentPage';
-import AIDashboard from '../pages/AIDashboard';
-import RecommendationHistoryPage from '../pages/RecommendationHistoryPage';
+// Private route component that redirects to login if not authenticated
+const PrivateRoute: React.FC<{ path: string; element: ReactNode }> = ({ path, element }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
+  if (loading) {
+    // While loading, show a loading message in the route
+    return <Route path={path} element={<div className="flex h-[60vh] items-center justify-center">Loading...</div>} />;
+  }
+
+  return user ? <Route path={path} element={element} /> : <Navigate to="/login" state={{ from: location }} replace />;
+};
 
 const AppRoutes: React.FC = () => {
   return (
-    <>
+    <Routes>
       {/* Public routes (landing, login, register) */}
-      <PublicRoute>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile-setup" element={<ProfileSetupPage />} />
-      </PublicRoute>
+      <PublicRoute path="/" element={<LandingPage />} />
+      <PublicRoute path="/login" element={<LoginPage />} />
+      <PublicRoute path="/register" element={<RegisterPage />} />
+      <PublicRoute path="/profile-setup" element={<ProfileSetupPage />} />
 
       {/* Protected routes (requires authentication) */}
-      <PrivateRoute>
-        <Route path="/dashboard" element={<AIDashboard />} />
-        <Route path="/assessment" element={<SkillAssessmentPage />} />
-        <Route path="/profile" element={<ProfileSetupPage />} />
-        <Route path="/recommendations" element={<RecommendationHistoryPage />} />
-        {/* Add other protected routes here */}
-      </PrivateRoute>
+      <PrivateRoute path="/dashboard" element={<AIDashboard />} />
+      <PrivateRoute path="/assessment" element={<SkillAssessmentPage />} />
+      <PrivateRoute path="/profile" element={<ProfileSetupPage />} />
+      <PrivateRoute path="/recommendations" element={<RecommendationHistoryPage />} />
 
-      {/* Fallback for 404 - we can redirect to landing or show a 404 page */}
+      {/* Fallback for 404 - redirect to landing */}
       <Navigate to="/" replace />
-    </>
+    </Routes>
   );
 };
 
