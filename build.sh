@@ -1,11 +1,28 @@
 #!/bin/bash
 set -e  # Exit on any error
 
+# Activate virtual environment if exists
+if [ -f "venv/bin/activate" ]; then
+    source venv/bin/activate
+fi
+
 echo "Starting build process..."
 
 # Install dependencies
 echo "Installing dependencies..."
 pip install -r requirements.txt
+
+# Build frontend
+echo "Building frontend..."
+cd frontend
+export VITE_API_URL=/
+npm install --legacy-peer-deps
+npm run build
+cd ..
+
+# Copy frontend index.html to Django templates
+mkdir -p backend/templates
+cp frontend/dist/index.html backend/templates/index.html
 
 # Run migrations
 echo "Running migrations..."

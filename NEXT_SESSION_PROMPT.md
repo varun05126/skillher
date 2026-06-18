@@ -35,7 +35,7 @@ If any issues are found during verification:
 ### 4. Continue Development
 After verification, begin work on the next pending phase:
 
-**Phase 5: Learning Roadmap**
+**Phase 1: Learning Roadmap**
 - Create Learning Goal models and API endpoints in the `learning` app.
 - Create Learning Roadmap models and API endpoints.
 - Build frontend components for creating, viewing, and tracking learning roadmaps.
