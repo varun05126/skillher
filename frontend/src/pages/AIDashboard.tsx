@@ -209,30 +209,30 @@ const AIDashboard: React.FC = () => {
               {/* Metrics — now use dynamic state */}
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-center">
                 <div className="bg-white/10 rounded-lg p-4">
-                  <p className="text-white/50 text-xs uppercase tracking-wider">Overall Skill Score</p>
-                  <p className="text-3xl font-bold text-white mb-1">{overallSkillScore}%</p>
-                  <p className="text-white/60">Skill Proficiency</p>
+                  <p className="text-muted/50 text-xs uppercase tracking-wider">Overall Skill Score</p>
+                  <p className="text-3xl font-bold text-offwhite mb-1">{overallSkillScore}%</p>
+                  <p className="text-muted/60">Skill Proficiency</p>
                 </div>
                 <div className="bg-white/10 rounded-lg p-4">
-                  <p className="text-white/50 text-xs uppercase tracking-wider">Skill Strengths</p>
-                  <p className="text-2xl font-bold text-white">{skillStrengthsCount}</p>
-                  <p className="text-white/60">Above 80%</p>
+                  <p className="text-muted/50 text-xs uppercase tracking-wider">Skill Strengths</p>
+                  <p className="text-2xl font-bold text-offwhite">{skillStrengthsCount}</p>
+                  <p className="text-muted/60">Above 80%</p>
                 </div>
                 <div className="bg-white/10 rounded-lg p-4">
-                  <p className="text-white/50 text-xs uppercase tracking-wider">Skill Gaps</p>
-                  <p className="text-2xl font-bold text-white">{skillGapsCount}</p>
-                  <p className="text-white/60">Below 60%</p>
+                  <p className="text-muted/50 text-xs uppercase tracking-wider">Skill Gaps</p>
+                  <p className="text-2xl font-bold text-offwhite">{skillGapsCount}</p>
+                  <p className="text-muted/60">Below 60%</p>
                 </div>
                 <div className="bg-white/10 rounded-lg p-4">
-                  <p className="text-white/50 text-xs uppercase tracking-wider">Learning Progress</p>
-                  <p className="text-2xl font-bold text-white">{learningStreak}</p>
-                  <p className="text-white/60">Days tracked</p>
+                  <p className="text-muted/50 text-xs uppercase tracking-wider">Learning Progress</p>
+                  <p className="text-2xl font-bold text-offwhite">{learningStreak}</p>
+                  <p className="text-muted/60">Days tracked</p>
                 </div>
               </div>
 
               {/* Dynamic category bars */}
               <div className="mt-6">
-                <h4 className="text-white font-bold mb-3 flex items-center gap-2">
+                <h4 className="text-offwhite font-bold mb-3 flex items-center gap-2">
                   <Activity className="h-4 w-4" />
                   Skills by Category
                 </h4>
@@ -240,8 +240,8 @@ const AIDashboard: React.FC = () => {
                   {categoryStats.map(({ category, averageScore }) => (
                     <div key={category} className="flex justify-between items-start">
                       <div className="flex-1">
-                        <p className="text-white/80 font-medium">{category}</p>
-                        <p className="text-white/60 text-xs">{averageScore}% average</p>
+                        <p className="text-muted/80 font-medium">{category}</p>
+                        <p className="text-muted/60 text-xs">{averageScore}% average</p>
                       </div>
                       <div className="w-32">
                         <div className="bg-white/20 rounded-full h-2.5 mb-1">
@@ -264,11 +264,11 @@ const AIDashboard: React.FC = () => {
 
               {/* Dynamic assessment history bars */}
               <div className="mt-6">
-                <h4 className="text-white font-bold mb-3">Recent Assessments</h4>
+                <h4 className="text-offwhite font-bold mb-3">Recent Assessments</h4>
                 <div className="space-y-2">
                   {assessmentHistory.map((entry, i) => (
                     <div key={i} className="flex items-center space-x-3">
-                      <div className="w-20 text-right text-white/60 text-xs">
+                      <div className="w-20 text-right text-muted/60 text-xs">
                         {new Date(entry.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                       </div>
                       <div className="flex-1">
@@ -279,7 +279,7 @@ const AIDashboard: React.FC = () => {
                           />
                         </div>
                       </div>
-                      <div className="w-10 text-left text-white">{Math.round(entry.score)}%</div>
+                      <div className="w-10 text-left text-muted">{Math.round(entry.score)}%</div>
                     </div>
                   ))}
                 </div>
@@ -291,20 +291,20 @@ const AIDashboard: React.FC = () => {
           {recommendations.length > 0 ? (
             <GlassCard className="p-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                <h3 className="text-xl font-bold text-offwhite flex items-center gap-2">
                   <Sparkles className="h-5 w-5" />
                   <span>Latest Recommendation</span>
                 </h3>
                 <div className="space-y-3">
-                  <div className="text-white/80">
+                  <div className="text-muted/80">
                     <strong>Recommended Skill:</strong>{' '}
                     {recommendations[0].recommended_career_title || 'N/A'}
                   </div>
-                  <div className="text-white/80">
+                  <div className="text-muted/80">
                     <strong>Skill Readiness Score:</strong>{' '}
                     {recommendations[0].career_readiness_score}/100
                   </div>
-                  <div className="text-white/80">
+                  <div className="text-muted/80">
                     <strong>Skill Gap:</strong>
                     <div className="mt-2 space-y-1">
                       {Object.entries(
@@ -329,7 +329,7 @@ const AIDashboard: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="text-white/80">
+                  <div className="text-muted/80">
                     <strong>3-Month Roadmap:</strong>
                     <div className="mt-2 space-y-3">
                       {Object.entries(recommendations[0].roadmap || {}).map(
@@ -341,7 +341,7 @@ const AIDashboard: React.FC = () => {
                             <p className="text-white/70 text-sm">{data.goal || ''}</p>
                             {data.skills_to_learn && data.skills_to_learn.length > 0 && (
                               <div className="mt-2">
-                                <strong className="text-white/80">Skills to learn:</strong>
+                                <strong className="text-muted/80">Skills to learn:</strong>
                                 <ul className="list-disc list-inside mt-1 text-white/70 space-y-1">
                                   {data.skills_to_learn.map((skill: string) => (
                                     <li key={skill}>{skill}</li>
@@ -351,7 +351,7 @@ const AIDashboard: React.FC = () => {
                             )}
                             {data.resources && data.resources.length > 0 && (
                               <div className="mt-2">
-                                <strong className="text-white/80">Resources:</strong>
+                                <strong className="text-muted/80">Resources:</strong>
                                 <ul className="list-disc list-inside mt-1 text-white/70 space-y-1">
                                   {data.resources.map((resource: string, index: number) => (
                                     <li key={index}>{resource}</li>
@@ -380,16 +380,16 @@ const AIDashboard: React.FC = () => {
           ) : (
             <GlassCard className="p-6 text-center">
               {/* FIX: icon inside h3 needs flex to sit beside text */}
-              <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center gap-2">
+              <h3 className="text-xl font-bold text-offwhite mb-4 flex items-center justify-center gap-2">
                 <Sparkles className="h-5 w-5" />
                 <span>No Recommendations Yet</span>
               </h3>
-              <p className="text-white/70">
+              <p className="text-muted/70">
                 Complete your skill assessment to generate personalized AI skill recommendations.
               </p>
               <NavLink
                 to="/assessment"
-                className="mt-4 inline-block bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-medium py-2 px-6 rounded-lg transition-transform transform hover:scale-105"
+                className="mt-4 inline-block rounded-md bg-gold/10 text-offwhite border border-gold/30 hover:bg-gold/20 focus-visible:ring-2 focus-visible:ring-gold font-sans disabled:opacity-50 ${loading ? 'cursor-not-allowed' : ''}"
               >
                 Start Assessment
               </NavLink>
@@ -398,7 +398,7 @@ const AIDashboard: React.FC = () => {
 
           {/* Recommendation History */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="text-xl font-bold text-offwhite flex items-center gap-2">
               <List className="h-5 w-5" />
               <span>Recommendation History</span>
             </h3>
@@ -408,19 +408,19 @@ const AIDashboard: React.FC = () => {
                   <GlassCard key={rec.id} className="p-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h4 className="text-white font-medium">
+                        <h4 className="text-offwhite font-medium">
                           {rec.recommended_career_title || 'N/A'}
                         </h4>
-                        <p className="text-white/60 text-sm">
+                        <p className="text-muted/60 text-sm">
                           {new Date(rec.created_at).toLocaleDateString()}
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className="text-white/80">
+                        <div className="text-muted/80">
                           <strong>Recommended Skill:</strong>{' '}
                           {rec.recommended_career_title || 'N/A'}
                         </div>
-                        <div className="text-white/80 mt-1">
+                        <div className="text-muted/80 mt-1">
                           <strong>Skill Readiness:</strong>{' '}
                           <span
                             className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -436,7 +436,7 @@ const AIDashboard: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="mt-2 text-white/70 text-sm">
+                    <div className="mt-2 text-muted/70 text-sm">
                       {Object.keys(rec.skill_gap || {}).length > 0 && (
                         <span>
                           Top gap:{' '}
@@ -463,7 +463,7 @@ const AIDashboard: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-white/60 text-center py-4">No past recommendations.</p>
+              <p className="text-muted/60 text-center py-4">No past recommendations.</p>
             )}
           </div>
 

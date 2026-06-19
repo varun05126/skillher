@@ -16,6 +16,16 @@ module.exports = {
           from: '#EC4899', // pink-500
           to: '#06B6D4',   // cyan-500
         },
+        // Custom colors for Skillher
+        'space-deep': '#0a0e1a',
+        'space-black': '#05060a',
+        'gold': '#e8b86d',
+        'offwhite': '#f2f0ec',
+        'muted': '#9aa0b8',
+      },
+      fontFamily: {
+        display: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'sans-serif'],
       },
       backgroundImage: {
         'hero-gradient': 'linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to))',

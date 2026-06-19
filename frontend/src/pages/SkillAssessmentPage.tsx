@@ -101,33 +101,33 @@ const SkillAssessmentPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-[60vh] flex items-center bg-gradient-to-b from-purple-900/80 to-black/90">
+    <div className="min-h-screen bg-space-deep flex items-center">
       <div className="relative z-10 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-8">
           <div>
-            <h2 className="text-center text-3xl font-bold gradient-text">
+            <h2 className="text-center text-3xl font-display text-offwhite">
               Skill Assessment
             </h2>
-            <p className="text-center text-white/80">
+            <p className="text-center text-muted">
               Rate your proficiency in each skill from 0 (no knowledge) to 100 (expert)
             </p>
           </div>
           <GlassCard className="p-6">
             <form onSubmit={handleSubmit} className="space-y-6">
               {skills.length === 0 ? (
-                <p className="text-white/50 text-center py-4">Loading skills...</p>
+                <p className="text-muted/50 text-center py-4">Loading skills...</p>
               ) : (
                 <>
                   {skills.map((skill) => (
                     <div key={skill.id} className="space-y-3">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <h3 className="text-white font-medium">{skill.name}</h3>
-                          <p className="text-white/60 text-sm">{skill.description}</p>
+                          <h3 className="text-offwhite font-medium">{skill.name}</h3>
+                          <p className="text-muted/60 text-sm">{skill.description}</p>
                         </div>
                         <div className="w-20">
                           <div className="flex items-center space-x-2">
-                            <span className="text-white/50 w-8 text-center">{skillScores[skill.name] || 0}%</span>
+                            <span className="text-muted/50 w-8 text-center">{skillScores[skill.name] || 0}%</span>
                           </div>
                         </div>
                       </div>
@@ -140,7 +140,7 @@ const SkillAssessmentPage: React.FC = () => {
                           onChange={(e) => handleChange(skill.name, e.target.value)}
                           className="w-full h-2 bg-white/10 rounded-lg"
                         />
-                        <div className="flex justify-between text-xs text-white/50 mt-1">
+                        <div className="flex justify-between text-xs text-muted/50 mt-1">
                           <span>0</span>
                           <span>50</span>
                           <span>100</span>
@@ -164,17 +164,15 @@ const SkillAssessmentPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 focus:outline-none focus:ring-2 focus-ring-offset-2 focus-ring-indigo-500 disabled:opacity-50 ${
-                    loading ? 'cursor-not-allowed' : ''
-                  }`}
+                  className={`w-full flex justify-center py-3 px-4 rounded-md bg-gold/10 text-offwhite border border-gold/30 hover:bg-gold/20 focus-visible:ring-2 focus-visible:ring-gold font-sans disabled:opacity-50 ${loading ? 'cursor-not-allowed' : ''}`}
                 >
                   {loading ? 'Saving...' : 'Save Assessment'}
                 </button>
               </div>
             </form>
           </GlassCard>
-          <div className="text-center text-white/70">
-            <NavLink to="/login" className="font-medium hover:text-white">
+          <div className="text-center text-muted">
+            <NavLink to="/login" className="font-medium text-muted hover:text-gold">
               Back to login
             </NavLink>
           </div>

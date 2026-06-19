@@ -106,11 +106,7 @@ SkillHer/
 ├── package.json
 ├── package-lock.json
 ├── LITERATURE_REVIEW_SKILLHER.md
-├── PROJECT_STATE.md
-├── PROJECT_HEALTH_REPORT.md
-├── SESSION_HANDOFF.md
-├── NEXT_SESSION_PROMPT.md
-├── TODO.md
+├── PROJECT_OBJECTIVES.md
 └── README.md
 
 ## Local Development Setup
