@@ -7,6 +7,7 @@ import {
   Sparkles,
   UserPlus,
   LogIn,
+  User,
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -24,18 +25,32 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-4">
+            {/* Always visible links */}
+            <NavLink
+              to="/#hero"
+              className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/#features"
+              className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors ml-4 focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              Features
+            </NavLink>
+
             {!isAuthenticated && (
               <>
                 <NavLink
                   to="/login"
-                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
                 >
                   <LogIn className="h-4 w-4" />
                   <span>Login</span>
                 </NavLink>
                 <NavLink
                   to="/register"
-                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors ml-4 focus-visible:ring-2 focus-visible:ring-gold"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
                 >
                   <UserPlus className="h-4 w-4" />
                   <span>Register</span>
@@ -46,24 +61,31 @@ const Navbar: React.FC = () => {
               <>
                 <NavLink
                   to="/dashboard"
-                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
                 >
                   <Menu className="h-4 w-4" />
                   <span>Dashboard</span>
                 </NavLink>
                 <NavLink
                   to="/assessment"
-                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors ml-4 focus-visible:ring-2 focus-visible:ring-gold"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
                 >
                   <Search className="h-4 w-4" />
                   <span>Assessment</span>
                 </NavLink>
                 <NavLink
                   to="/recommendations"
-                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors ml-4 focus-visible:ring-2 focus-visible:ring-gold"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Recommendations</span>
+                </NavLink>
+                <NavLink
+                  to="/profile"
+                  className="flex items-center space-x-2 text-offwhite/70 hover:text-gold transition-colors focus-visible:ring-2 focus-visible:ring-gold ml-4"
+                >
+                  <User className="h-4 w-4" />
+                  <span>Profile</span>
                 </NavLink>
                 <div className="relative ml-4">
                   <button

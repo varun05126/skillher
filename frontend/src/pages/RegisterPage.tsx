@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import { useAuth } from '../hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
 
 const RegisterPage: React.FC = () => {
@@ -10,10 +10,18 @@ const RegisterPage: React.FC = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
+  const [skillsInterests, setSkillsInterests] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useError(null);
   const { register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.initialSkill) {
+      setSkillsInterests(location.state.initialSkill);
+    }
+  }, [location.state]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +34,7 @@ const RegisterPage: React.FC = () => {
         first_name: firstName,
         last_name: lastName,
         username,
+        skills_interests: skillsInterests,
       });
       // Redirect to profile setup after registration
       navigate('/profile-setup', { replace: true });
@@ -123,6 +132,25 @@ const RegisterPage: React.FC = () => {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last name"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="skillsInterests" className="sr-only">
+                  Skills and Interests
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <UserPlus className="h-5 w-5 text-muted/50" />
+                  </div>
+                  <input
+                    id="skillsInterests"
+                    type="text"
+                    required
+                    className="block w-full pl-10 pr-3 py-3 bg-white/10 border border-white/20 rounded-md text-offwhite placeholder-muted/40 focus-visible:ring-2 focus-visible:ring-gold font-sans"
+                    value={skillsInterests}
+                    onChange={(e) => setSkillsInterests(e.target.value)}
+                    placeholder="What skills are you interested in learning?"
                   />
                 </div>
               </div>
