@@ -11,7 +11,11 @@
         <!-- Latest Assessment Card -->
         <div class="glass p-6">
             <h2 class="text-xl font-bold mb-4">Latest Skill Assessment</h2>
-            <p class="text-gray-600 mb-4">You haven't taken any assessments yet.</p>
+            {% if latest_assessment %}
+                <p class="text-gray-600 mb-4">{{ latest_assessment.skill_name }} - {{ latest_assessment.get_self_rated_level_display }}</p>
+            {% else %}
+                <p class="text-gray-600 mb-4">You haven't taken any assessments yet.</p>
+            {% endif %}
             <a href="{% url 'assessment' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
                 Take Assessment
             </a>
@@ -20,7 +24,12 @@
         <!-- Latest Recommendations Card -->
         <div class="glass p-6">
             <h2 class="text-xl font-bold mb-4">Recent Recommendations</h2>
-            <p class="text-gray-600 mb-4">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+            {% if latest_recommendation %}
+                <p class="text-gray-600 mb-4">{{ latest_recommendation.title }}</p>
+                <p class="text-gray-500">{{ latest_recommendation.description|truncatewords:20 }}</p>
+            {% else %}
+                <p class="text-gray-600 mb-4">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+            {% endif %}
             <a href="{% url 'recommendations' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
                 View Recommendations
             </a>
@@ -33,7 +42,7 @@
         <p class="text-gray-600">Complete your profile to better tailor your learning experience.</p>
         <a href="{% url 'profile' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
             Edit Profile
-        </p>
+        </a>
     </div>
 </div>
 {% endblock %}

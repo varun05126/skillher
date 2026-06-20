@@ -24,6 +24,32 @@ class SkillAssessment(models.Model):
         ('advanced', 'Advanced'),
     ]
     self_rated_level = models.CharField(max_length=20, choices=SELF_RATED_LEVELS)
+    # New fields for richer assessment
+    YEARS_OF_EXPERIENCE_CHOICES = [
+        (0, 'Less than 1 year'),
+        (1, '1-2 years'),
+        (2, '3-5 years'),
+        (3, '6-10 years'),
+        (4, 'More than 10 years'),
+    ]
+    years_of_experience = models.IntegerField(choices=YEARS_OF_EXPERIENCE_CHOICES, blank=True, null=True)
+    CONFIDENCE_LEVEL_CHOICES = [
+        (1, '1 - Not confident'),
+        (2, '2 - Slightly confident'),
+        (3, '3 - Moderately confident'),
+        (4, '4 - Very confident'),
+        (5, '5 - Extremely confident'),
+    ]
+    confidence_level = models.IntegerField(choices=CONFIDENCE_LEVEL_CHOICES, blank=True, null=True)
+    FREQUENCY_CHOICES = [
+        ('daily', 'Daily'),
+        ('weekly', 'Weekly'),
+        ('monthly', 'Monthly'),
+        ('rarely', 'Rarely'),
+    ]
+    frequency_use = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, blank=True)
+    formal_training = models.BooleanField(default=False)
+    primary_goal = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

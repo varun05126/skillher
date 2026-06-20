@@ -1,47 +1,112 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SkillHer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+        }
+        .input-glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .input-glass:focus {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+        .btn-glass {
+            background: rgba(79, 70, 229, 0.4); /* indigo-600 with opacity */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-glass:hover {
+            background: rgba(79, 70, 229, 0.5);
+            transform: translateY(-1px);
+        }
+    </style>
+    
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-lavender-100 to-blue-100 pt-16">
+    <!-- Navbar -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <span class="font-bold text-xl text-gray-800">SkillHer</span>
+            </div>
+            <div class="hidden md:flex md:items-center md:space-x-6">
+                
+                    <a href="/login/" class="text-gray-800 hover:text-gray-600">Login</a>
+                    <a href="/register/" class="text-gray-800 hover:text-gray-600">Register</a>
+                
+            </div>
+        </div>
+    </nav>
 
-{% block title %}Login - SkillHer{% endblock %}
-
-{% block content %}
+    
 <div class="glass-strong max-w-md mx-auto p-6 mt-10">
     <h2 class="text-2xl font-bold mb-6 text-center">Login to SkillHer</h2>
-    {% if form.non_field_errors %}
-        <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
+    
+    <form method="post" action="/login/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="nWPmv1YCC2Q7nz97sx6VrX3NYJIfVjZnjAHyrTrkxxmGYsU7E0krilwkDGnWSxy9">
         <div class="mb-4">
-            <label for="{{ form.username.id_for_label }}" class="block mb-2 font-medium">{{ form.username.label }}</label>
+            <label for="id_username" class="block mb-2 font-medium">Username</label>
             <div class="relative">
-                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="{{ form.username.value|default_if_none:'' }}" placeholder="Username">
-                {% if form.username.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
-                {% endif %}
+                <input type="text" name="username" id="id_username" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Username">
+                
             </div>
-            {% if form.username.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.username.errors|first }}</p>
-            {% endif %}
+            
         </div>
         <div class="mb-6">
-            <label for="{{ form.password.id_for_label }}" class="block mb-2 font-medium">{{ form.password.label }}</label>
+            <label for="id_password" class="block mb-2 font-medium">Password</label>
             <div class="relative">
-                <input type="password" name="password" id="{{ form.password.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Password">
-                {% if form.password.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
-                {% endif %}
+                <input type="password" name="password" id="id_password" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Password">
+                
             </div>
-            {% if form.password.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.password.errors|first }}</p>
-            {% endif %}
+            
         </div>
         <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
             Login
         </button>
     </form>
     <p class="mt-6 text-center">
-        Don't have an account? <a href="{% url 'register' %}" class="font-medium text-indigo-600 hover:text-indigo-800">Register</a>
+        Don't have an account? <a href="/register/" class="font-medium text-indigo-600 hover:text-indigo-800">Register</a>
     </p>
 </div>
-{% endblock %}
+
+
+    <!-- Glassmorphism blobs -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[200px] h-[200px] bg-pink-500/10 blur-3xl transform rotate-12"></div>
+        <div class="absolute top-[10%] right-[-10%] w-[300px] h-[300px] bg-lavender-500/10 blur-3xl transform rotate--10"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[250px] h-[250px] bg-blue-500/10 blur-3xl transform rotate-5"></div>
+    </div>
+</body>
+</html>

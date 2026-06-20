@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.contrib import messages
 from .models import Profile, SkillAssessment, Recommendation
-from .forms import BootstrapUserCreationForm, BootstrapAuthenticationForm, SkillAssessmentForm
+from .forms import BootstrapUserCreationForm, BootstrapAuthenticationForm, SkillAssessmentForm, ProfileForm
 import os
 import json
 import groq
@@ -27,15 +27,19 @@ class RegisterView(View):
             return redirect('dashboard')
         return render(request, self.template_name, {'form': form})
 
+def home(request):
+    return render(request, 'home.html')
+
+
 # We'll use the built-in LoginView and LogoutView via URL configuration
 
 @login_required
 def dashboard(request):
-    # Check if user has a profile; if not, redirect to profile setup
+    # Check if user has a profile; if not, redirect to profile
     try:
         profile = request.user.profile
     except Profile.DoesNotExist:
-        return redirect('profile_setup')  # We'll create this later
+        return redirect('profile')
 
     # Get latest skill assessment
     latest_assessment = SkillAssessment.objects.filter(user=request.user).order_by('-created_at').first()
@@ -84,18 +88,22 @@ def recommendations(request):
         Self-rated level: {latest_assessment.get_self_rated_level_display()}
 
         For each recommendation, provide a title and a brief description (1-2 sentences). Focus on actionable steps to improve this skill.
-        Return the recommendations as a JSON array of objects, each with 'title' and 'description' fields.
+        Return the recommendations as a JSON object with a "recommendations" key containing an array of objects, each with 'title' and 'description' fields.
         Example format:
-        [
-            {{"title": "Recommendation 1", "description": "Description 1"}},
-            {{"title": "Recommendation 2", "description": "Description 2"}},
-            {{"title": "Recommendation 3", "description": "Description 3"}}
-        ]
+        {{
+            "recommendations": [
+                {{"title": "Recommendation 1", "description": "Description 1"}},
+                {{"title": "Recommendation 2", "description": "Description 2"}},
+                {{"title": "Recommendation 3", "description": "Description 3"}}
+            ]
+        }}
         """
 
         try:
             # Initialize Groq client
-            client = groq.Groq(api_key=os.environ.get('GROQ_API_KEY'))
+            api_key = os.environ.get('GROQ_API_KEY')
+            print(f"DEBUG: GROQ_API_KEY present: {bool(api_key)}")
+            client = groq.Groq(api_key=api_key)
             # Call the Groq API
             chat_completion = client.chat.completions.create(
                 messages=[
@@ -108,7 +116,7 @@ def recommendations(request):
                         "content": prompt
                     }
                 ],
-                model="mixtral-8x22b-instruct-v0.1",  # or another available model
+                model="llama-3.3-70b-versatile",
                 temperature=0.7,
                 max_tokens=500,
                 response_format={"type": "json_object"}
@@ -116,11 +124,11 @@ def recommendations(request):
 
             # Extract the response
             response_text = chat_completion.choices[0].message.content
+            print(f"Groq raw response: {response_text}")
             # Parse the JSON
             data = json.loads(response_text)
             recommendations_list = data.get('recommendations', [])
-            if not recommendations_list and isinstance(data, list):
-                recommendations_list = data
+            print(f"Parsed recommendations list: {recommendations_list}")
 
             # Save each recommendation
             for rec in recommendations_list[:3]:  # Ensure we only take up to 3
@@ -140,6 +148,7 @@ def recommendations(request):
                 messages.warning(request, 'Could not generate recommendations. Please try again.')
 
         except Exception as e:
+            print(f"Groq error: {e}")
             messages.error(request, f'Error generating recommendations: {str(e)}')
 
         return redirect('recommendations')
@@ -151,3 +160,20 @@ def recommendations(request):
         'recommendations': recommendations_list,
     }
     return render(request, 'recommendations.html', context)
+
+
+@login_required
+def profile(request):
+    # Get or create the user's profile
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('dashboard')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'form': form})

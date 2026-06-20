@@ -15,7 +15,7 @@
         <div class="mb-4">
             <label for="{{ form.bio.id_for_label }}" class="block mb-2 font-medium">{{ form.bio.label }}</label>
             <div class="relative">
-                <textarea name="bio" id="{{ form.bio.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" rows="4">{{ form.bio.value|default_if_none:'' }}</textarea>
+                <textarea name="bio" id="{{ form.bio.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" rows="4">{{ form.bio.value|default_if_none:'' }}</textarea>
                 {% if form.bio.errors %}
                     <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
                 {% endif %}
@@ -27,7 +27,7 @@
         <div class="mb-4">
             <label for="{{ form.career_goal.id_for_label }}" class="block mb-2 font-medium">{{ form.career_goal.label }}</label>
             <div class="relative">
-                <input type="text" name="career_goal" id="{{ form.career_goal.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.career_goal.value|default_if_none:'' }}" placeholder="Your career goal">
+                <input type="text" name="career_goal" id="{{ form.career_goal.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.career_goal.value|default_if_none:'' }}" placeholder="Your career goal" list="career-goal-suggestions">
                 {% if form.career_goal.errors %}
                     <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
                 {% endif %}
@@ -35,11 +35,28 @@
             {% if form.career_goal.errors %}
                 <p class="mt-1 text-sm text-red-600">{{ form.career_goal.errors|first }}</p>
             {% endif %}
+            <datalist id="career-goal-suggestions">
+                <option value="Software Engineer">
+                <option value="Data Analyst">
+                <option value="Product Manager">
+                <option value="UX Designer">
+                <option value="Digital Marketing Specialist">
+                <option value="Entrepreneur">
+                <option value="Project Manager">
+                <option value="Financial Analyst">
+                <option value="UX Researcher">
+                <option value="DevOps Engineer">
+                <option value="Cybersecurity Analyst">
+                <option value="AI/ML Engineer">
+                <option value="Business Analyst">
+                <option value="Human Resources Manager">
+                <option value="Graphic Designer">
+            </datalist>
         </div>
         <div class="mb-6">
             <label for="{{ form.experience_level.id_for_label }}" class="block mb-2 font-medium">{{ form.experience_level.label }}</label>
             <div class="relative">
-                <select name="experience_level" id="{{ form.experience_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                <select name="experience_level" id="{{ form.experience_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
                     {% for level in form.experience_level.field.choices %}
                         {% if level.0 != '' %}
                             <option value="{{ level.0 }}" {% if form.experience_level.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
@@ -54,7 +71,7 @@
                 <p class="mt-1 text-sm text-red-600">{{ form.experience_level.errors|first }}</p>
             {% endif %}
         </div>
-        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
             Save Profile
         </button>
     </form>

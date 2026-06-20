@@ -16,7 +16,7 @@
         <div class="mb-4">
             <label for="{{ form.skill_name.id_for_label }}" class="block mb-2 font-medium">{{ form.skill_name.label }}</label>
             <div class="relative">
-                <input type="text" name="skill_name" id="{{ form.skill_name.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="{{ form.skill_name.value|default_if_none:'' }}" placeholder="Enter skill name (e.g., Python, Communication)">
+                <input type="text" name="skill_name" id="{{ form.skill_name.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.skill_name.value|default_if_none:'' }}" placeholder="Enter skill name (e.g., Python, Communication)">
                 {% if form.skill_name.errors %}
                     <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
                 {% endif %}
@@ -28,7 +28,7 @@
         <div class="mb-6">
             <label for="{{ form.self_rated_level.id_for_label }}" class="block mb-2 font-medium">{{ form.self_rated_level.label }}</label>
             <div class="relative">
-                <select name="self_rated_level" id="{{ form.self_rated_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                <select name="self_rated_level" id="{{ form.self_rated_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
                     {% for level in form.self_rated_level.field.choices %}
                         {% if level.0 != '' %}
                             <option value="{{ level.0 }}" {% if form.self_rated_level.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
@@ -43,7 +43,89 @@
                 <p class="mt-1 text-sm text-red-600">{{ form.self_rated_level.errors|first }}</p>
             {% endif %}
         </div>
-        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <!-- Years of Experience -->
+        <div class="mb-6">
+            <label for="{{ form.years_of_experience.id_for_label }}" class="block mb-2 font-medium">{{ form.years_of_experience.label }}</label>
+            <div class="relative">
+                <select name="years_of_experience" id="{{ form.years_of_experience.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
+                    {% for level in form.years_of_experience.field.choices %}
+                        {% if level.0 != '' %}
+                            <option value="{{ level.0 }}" {% if form.years_of_experience.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% if form.years_of_experience.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.years_of_experience.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.years_of_experience.errors|first }}</p>
+            {% endif %}
+        </div>
+        <!-- Confidence Level -->
+        <div class="mb-6">
+            <label for="{{ form.confidence_level.id_for_label }}" class="block mb-2 font-medium">{{ form.confidence_level.label }}</label>
+            <div class="relative">
+                <select name="confidence_level" id="{{ form.confidence_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
+                    {% for level in form.confidence_level.field.choices %}
+                        {% if level.0 != '' %}
+                            <option value="{{ level.0 }}" {% if form.confidence_level.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% if form.confidence_level.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.confidence_level.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.confidence_level.errors|first }}</p>
+            {% endif %}
+        </div>
+        <!-- Frequency of Use -->
+        <div class="mb-6">
+            <label for="{{ form.frequency_use.id_for_label }}" class="block mb-2 font-medium">{{ form.frequency_use.label }}</label>
+            <div class="relative">
+                <select name="frequency_use" id="{{ form.frequency_use.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
+                    {% for level in form.frequency_use.field.choices %}
+                        {% if level.0 != '' %}
+                            <option value="{{ level.0 }}" {% if form.frequency_use.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% if form.frequency_use.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.frequency_use.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.frequency_use.errors|first }}</p>
+            {% endif %}
+        </div>
+        <!-- Formal Training -->
+        <div class="mb-6 flex items-start">
+            <div class="flex items-center h-5">
+                <input id="{{ form.formal_training.id_for_label }}" name="formal_training" type="checkbox" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+            </div>
+            <div class="ml-3 text-sm">
+                <label for="{{ form.formal_training.id_for_label }}" class="block mb-2 font-medium">{{ form.formal_training.label }}</label>
+                {% if form.formal_training.errors %}
+                    <p class="mt-1 text-sm text-red-600">{{ form.formal_training.errors|first }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Primary Goal -->
+        <div class="mb-6">
+            <label for="{{ form.primary_goal.id_for_label }}" class="block mb-2 font-medium">{{ form.primary_goal.label }}</label>
+            <div class="relative">
+                <input type="text" name="primary_goal" id="{{ form.primary_goal.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.primary_goal.value|default_if_none:'' }}" placeholder="What's your primary goal for improving this skill?">
+                {% if form.primary_goal.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.primary_goal.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.primary_goal.errors|first }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
             Submit Assessment
         </button>
     </form>
