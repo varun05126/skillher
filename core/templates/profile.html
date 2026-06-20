@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - SkillHer{% endblock %}
+
+{% block content %}
+<div class="glass-strong max-w-md mx-auto p-6 mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center">Edit Profile</h2>
+    {% if form.non_field_errors %}
+        <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.bio.id_for_label }}" class="block mb-2 font-medium">{{ form.bio.label }}</label>
+            <div class="relative">
+                <textarea name="bio" id="{{ form.bio.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" rows="4">{{ form.bio.value|default_if_none:'' }}</textarea>
+                {% if form.bio.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.bio.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.bio.errors|first }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.career_goal.id_for_label }}" class="block mb-2 font-medium">{{ form.career_goal.label }}</label>
+            <div class="relative">
+                <input type="text" name="career_goal" id="{{ form.career_goal.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.career_goal.value|default_if_none:'' }}" placeholder="Your career goal">
+                {% if form.career_goal.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.career_goal.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.career_goal.errors|first }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-6">
+            <label for="{{ form.experience_level.id_for_label }}" class="block mb-2 font-medium">{{ form.experience_level.label }}</label>
+            <div class="relative">
+                <select name="experience_level" id="{{ form.experience_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+                    {% for level in form.experience_level.field.choices %}
+                        {% if level.0 != '' %}
+                            <option value="{{ level.0 }}" {% if form.experience_level.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% if form.experience_level.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.experience_level.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.experience_level.errors|first }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+            Save Profile
+        </button>
+    </form>
+</div>
+{% endblock %}

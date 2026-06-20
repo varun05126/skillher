@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SkillHer{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+        }
+        .input-glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .input-glass:focus {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+        .btn-glass {
+            background: rgba(79, 70, 229, 0.4); /* indigo-600 with opacity */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-glass:hover {
+            background: rgba(79, 70, 229, 0.5);
+            transform: translateY(-1px);
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    {% block content %}{% endblock %}
+</body>
+</html>

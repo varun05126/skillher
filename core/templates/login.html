@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Login - SkillHer{% endblock %}
+
+{% block content %}
+<div class="glass-strong max-w-md mx-auto p-6 mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center">Login to SkillHer</h2>
+    {% if form.non_field_errors %}
+        <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.username.id_for_label }}" class="block mb-2 font-medium">{{ form.username.label }}</label>
+            <div class="relative">
+                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="{{ form.username.value|default_if_none:'' }}" placeholder="Username">
+                {% if form.username.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.username.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.username.errors|first }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-6">
+            <label for="{{ form.password.id_for_label }}" class="block mb-2 font-medium">{{ form.password.label }}</label>
+            <div class="relative">
+                <input type="password" name="password" id="{{ form.password.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Password">
+                {% if form.password.errors %}
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                {% endif %}
+            </div>
+            {% if form.password.errors %}
+                <p class="mt-1 text-sm text-red-600">{{ form.password.errors|first }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+            Login
+        </button>
+    </form>
+    <p class="mt-6 text-center">
+        Don't have an account? <a href="{% url 'register' %}" class="font-medium text-indigo-600 hover:text-indigo-800">Register</a>
+    </p>
+</div>
+{% endblock %}
