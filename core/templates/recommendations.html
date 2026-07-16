@@ -70,29 +70,51 @@
     <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Your Recommendations</h1>
     <p class="text-center mb-8 text-[var(--text-secondary)]">Based on your latest skill assessment, here are personalized suggestions to grow your skills.</p>
 
-    {% if recommendations %}
+    {% if newest_batch or older_batches %}
         <form method="post" action="{% url 'recommendations' %}">
             {% csrf_token %}
             <button type="submit" class="button-primary w-full text-center block py-2 mb-4">
                 Generate New Recommendations
             </button>
         </form>
-        <div class="timeline">
-            {% for rec in recommendations %}
-            <div class="timeline-item">
-                <div class="timeline-marker">{{ forloop.counter }}</div>
-                <div class="timeline-content">
-                    <div class="card p-6">
-                        <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
-                        <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
-                        {% if rec.source %}
-                            <p class="text-sm text-[var(--accent)]">Source: {{ rec.source }}</p>
-                        {% endif %}
+        {% if newest_batch %}
+            <h2 class="text-2xl font-bold mb-4 text-center text-[var(--text-primary)]">New</h2>
+            <div class="timeline">
+                {% for rec in newest_batch %}
+                <div class="timeline-item">
+                    <div class="timeline-marker">{{ forloop.counter }}</div>
+                    <div class="timeline-content">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
+                            <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
+                            <p class="text-xs text-[var(--text-secondary)] italic">
+                                Generated {{ rec.created_at|date:"M d, Y, g:i a" }}
+                            </p>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
+        {% endif %}
+        {% if older_batches %}
+            <h2 class="text-2xl font-bold mb-4 mt-8 text-center text-[var(--text-primary)]">Previous</h2>
+            <div class="timeline">
+                {% for rec in older_batches %}
+                <div class="timeline-item">
+                    <div class="timeline-marker">{{ forloop.counter }}</div>
+                    <div class="timeline-content">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
+                            <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
+                            <p class="text-xs text-[var(--text-secondary)] italic">
+                                Generated {{ rec.created_at|date:"M d, Y, g:i a" }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% else %}
         <div class="card p-6 text-center">
             <p class="text-[var(--text-secondary)]">No recommendations yet. Complete an assessment to get personalized suggestions.</p>

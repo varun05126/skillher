@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}SkillHer{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
 :root {
@@ -26,7 +26,71 @@
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.1);
-            --font-heading: 'Poppins', sans-serif;
+            --font-heading: 'Caveat', cursive;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0D0E1A;
+            --text-primary: #E0E0E0;
+            --text-secondary: #A0A0C0;
+            --accent: #4F9EFF;
+            --accent-hover: #3B8BF0;
+            --gradient-start: #4F9EFF;
+            --gradient-end: #A855F7;
+            --border: rgba(255,255,255,0.15);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] body {
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(79,158,255,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(168,85,247,0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(79,158,255,0.05) 0%, transparent 15%),
+                radial-gradient(circle at 60% 20%, rgba(168,85,247,0.05) 0%, transparent 15%);
+        }
+
+        [data-theme="dark"] .card {
+            background-color: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.15);
+        }
+
+        [data-theme="dark"] .button-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        [data-theme="dark"] .button-secondary {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        [data-theme="dark"] .button-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        [data-theme="dark"] .input-field,
+        [data-theme="dark"] .input,
+        [data-theme="dark"] select {
+            background-color: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .input-field:focus,
+        [data-theme="dark"] .input:focus,
+        [data-theme="dark"] select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(79,158,255,0.3);
+        }
+
+        [data-theme="dark"] .message {
+            background-color: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
         }
 
         h1, h2, h3, h4, h5, h6, .brand {
@@ -207,9 +271,15 @@
                     <a href="{% url 'recommendations' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Recommendations</a>
                     <a href="{% url 'profile' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Profile</a>
                     <a href="{% url 'logout' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Logout</a>
+                    <button id="theme-toggle" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors p-1 rounded" aria-label="Toggle dark mode">
+                        🌙
+                    </button>
                 {% else %}
                     <a href="{% url 'login' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Login</a>
                     <a href="{% url 'register' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Register</a>
+                    <button id="theme-toggle" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors p-1 rounded" aria-label="Toggle dark mode">
+                        🌙
+                    </button>
                 {% endif %}
             </div>
         </div>
@@ -224,5 +294,45 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+    <script>
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, days = 365) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires="+date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        const html = document.documentElement;
+        const btn = document.getElementById('theme-toggle');
+        const currentTheme = getCookie('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            btn.innerHTML = '☀️';
+        } else {
+            html.removeAttribute('data-theme');
+            btn.innerHTML = '🌙';
+        }
+
+        btn.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                btn.innerHTML = '🌙';
+                setCookie('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                btn.innerHTML = '☀️';
+                setCookie('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>

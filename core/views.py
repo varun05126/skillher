@@ -170,8 +170,20 @@ def recommendations(request):
     # GET request: show list of recommendations
     recommendations_list = Recommendation.objects.filter(user=request.user).order_by('-created_at')
 
+    # Group into newest batch and older
+    newest_batch = []
+    older_batches = []
+    if recommendations_list:
+        latest_timestamp = recommendations_list.first().created_at
+        for rec in recommendations_list:
+            if rec.created_at == latest_timestamp:
+                newest_batch.append(rec)
+            else:
+                older_batches.append(rec)
+
     context = {
-        'recommendations': recommendations_list,
+        'newest_batch': newest_batch,
+        'older_batches': older_batches,
     }
     return render(request, 'recommendations.html', context)
 
