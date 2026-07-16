@@ -150,23 +150,26 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
-        'file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs/django.log',
-        },
     },
     'root': {
         'handlers': ['console'],
     },
     'loggers': {
         'django': {
-            'handlers': ['console'] + (['file'] if DEBUG else []),
+            'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': False,
         },
     },
 }
+
+if DEBUG:
+    LOGGING['handlers']['file'] = {
+        'level': 'WARNING',
+        'class': 'logging.FileHandler',
+        'filename': BASE_DIR / 'logs/django.log',
+    }
+    LOGGING['loggers']['django']['handlers'].append('file')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
