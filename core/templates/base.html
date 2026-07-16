@@ -16,12 +16,25 @@
             --success: #10B981;
             --warning: #F59E0B;
             --error: #EF4444;
+            --info: #3B82F6;
+            --glass-bg: rgba(255,255,255,0.15);
+            --glass-border: rgba(255,255,255,0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0,0,0,0.15);
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 12px;
         }
 
         .container {
@@ -31,16 +44,20 @@
         }
 
         .card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 12px;
         }
 
         .button-primary {
-            background-color: var(--accent);
+            background: rgba(45,140,140,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
             color: white;
-            border: none;
             padding: 0.5rem 1rem;
             border-radius: 6px;
             font-weight: 500;
@@ -49,11 +66,11 @@
         }
 
         .button-primary:hover {
-            background-color: var(--accent-hover);
+            background: rgba(45,140,140,0.5);
         }
 
         .button-secondary {
-            background-color: transparent;
+            background: transparent;
             color: var(--accent);
             border: 1px solid var(--accent);
             padding: 0.5rem 1rem;
@@ -64,22 +81,29 @@
         }
 
         .button-secondary:hover {
-            background-color: rgba(45, 140, 140, 0.05);
+            background: rgba(45,140,140,0.05);
         }
 
-        .input-field {
+        .input-field,
+        .input,
+        .select {
             width: 100%;
             padding: 0.5rem 0.75rem;
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
             border-radius: 6px;
             font-size: 0.875rem;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .input-field:focus {
+        .input-field:focus,
+        .input:focus,
+        .select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(45, 140, 140, 0.2);
+            box-shadow: 0 0 0 2px rgba(45,140,140,0.2);
         }
 
         .label {
@@ -90,17 +114,9 @@
             font-size: 0.875rem;
         }
 
-        .text-center {
-            text-align: center;
-        }
-
-        .text-left {
-            text-align: left;
-        }
-
-        .text-right {
-            text-align: right;
-        }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
 
         .mb-2 { margin-bottom: 0.5rem; }
         .mb-4 { margin-bottom: 1rem; }
@@ -112,54 +128,42 @@
         .mt-6 { margin-top: 1.5rem; }
         .mt-8 { margin-top: 2rem; }
 
-        .flex {
-            display: flex;
-        }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
 
-        .flex-col {
-            flex-direction: column;
-        }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
 
-        .items-center {
-            align-items: center;
-        }
-
-        .justify-between {
-            justify-content: space-between;
-        }
-
-        .justify-center {
-            justify-content: center;
-        }
-
-        .space-x-4 > * + * {
-            margin-left: 1rem;
-        }
-
-        .space-y-4 > * + * {
-            margin-top: 1rem;
-        }
-
-        .grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .grid-cols-2 {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
+        .grid { display: grid; gap: 1.5rem; }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
         @media (min-width: 768px) {
-            .md\:grid-cols-2 {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
+
+        .message {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .message-success { border-color: var(--success); color: var(--success); }
+        .message-error { border-color: var(--error); color: var(--error); }
+        .message-warning { border-color: var(--warning); color: var(--warning); }
+        .message-info { border-color: var(--info); color: var(--info); }
+        .message { /* default */ }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="bg-white border-b border-[var(--border)]">
+    <nav class="glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center">
                 <span class="font-bold text-xl text-[var(--text-primary)]">SkillHer</span>
@@ -181,9 +185,7 @@
 
     {% if messages %}
       {% for message in messages %}
-        <div class="mb-4 p-4 rounded-lg {% if message.tags == 'error' %}bg-[var(--error)]/10 text-[var(--error)] border border-[var(--error)]/20{% elif message.tags == 'success' %}bg-[var(--success)]/10 text-[var(--success)] border border-[var(--success)]/20{% elif message.tags == 'warning' %}bg-[var(--warning)]/10 text-[var(--warning)] border border-[var(--warning)]/20{% else %}bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20{% endif %}">
-          {{ message }}
-        </div>
+        <div class="message message-{{ message.tags|default:'info' }}">{{ message }}</div>
       {% endfor %}
     {% endif %}
 
