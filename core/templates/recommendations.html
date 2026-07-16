@@ -25,7 +25,7 @@
             </div>
             {% endfor %}
         </div>
-    <% else %>
+    {% else %}
         <div class="card p-6 text-center">
             <p class="text-[var(--text-secondary)]">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
             <form method="post" action="{% url 'recommendations' %}">
