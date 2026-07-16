@@ -3,37 +3,41 @@
 {% block title %}Profile - SkillHer{% endblock %}
 
 {% block content %}
-<div class="glass-strong max-w-md mx-auto p-6 mt-10">
-    <h2 class="text-2xl font-bold mb-6 text-center">Edit Profile</h2>
+<div class="card max-w-md mx-auto p-6 mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center text-[var(--text-primary)]">Edit Profile</h2>
     {% if form.non_field_errors %}
-        <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
+        <div class="mb-4 p-4 rounded-lg bg-[var(--error)]/10 text-[var(--error)] border border-[var(--error)]/20">
             {{ form.non_field_errors }}
         </div>
     {% endif %}
     <form method="post" action="{% url 'profile' %}">
         {% csrf_token %}
         <div class="mb-4">
-            <label for="{{ form.bio.id_for_label }}" class="block mb-2 font-medium">{{ form.bio.label }}</label>
+            <label for="{{ form.bio.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.bio.label }}
+            </label>
             <div class="relative">
-                <textarea name="bio" id="{{ form.bio.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" rows="4">{{ form.bio.value|default_if_none:'' }}</textarea>
+                <textarea name="bio" id="{{ form.bio.id_for_label }}" class="textarea w-full px-4 py-2 border border-[var(--var(--border)) rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" rows="4">{{ form.bio.value|default_if_none:'' }}</textarea>
                 {% if form.bio.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.bio.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.bio.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.bio.errors|first }}</p>
             {% endif %}
         </div>
         <div class="mb-4">
-            <label for="{{ form.career_goal.id_for_label }}" class="block mb-2 font-medium">{{ form.career_goal.label }}</label>
+            <label for="{{ form.career_goal.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.career_goal.label }}
+            </label>
             <div class="relative">
-                <input type="text" name="career_goal" id="{{ form.career_goal.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50" value="{{ form.career_goal.value|default_if_none:'' }}" placeholder="Your career goal" list="career-goal-suggestions">
+                <input type="text" name="career_goal" id="{{ form.career_goal.id_for_label }}" class="input w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" value="{{ form.career_goal.value|default_if_none:'' }}" placeholder="Your career goal" list="career-goal-suggestions">
                 {% if form.career_goal.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.career_goal.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.career_goal.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.career_goal.errors|first }}</p>
             {% endif %}
             <datalist id="career-goal-suggestions">
                 <option value="Software Engineer">
@@ -54,9 +58,11 @@
             </datalist>
         </div>
         <div class="mb-6">
-            <label for="{{ form.experience_level.id_for_label }}" class="block mb-2 font-medium">{{ form.experience_level.label }}</label>
+            <label for="{{ form.experience_level.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.experience_level.label }}
+            </label>
             <div class="relative">
-                <select name="experience_level" id="{{ form.experience_level.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
+                <select name="experience_level" id="{{ form.experience_level.id_for_label }}" class="select w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20">
                     {% for level in form.experience_level.field.choices %}
                         {% if level.0 != '' %}
                             <option value="{{ level.0 }}" {% if form.experience_level.value == level.0 %}selected{% endif %}>{{ level.1 }}</option>
@@ -64,14 +70,14 @@
                     {% endfor %}
                 </select>
                 {% if form.experience_level.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.experience_level.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.experience_level.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.experience_level.errors|first }}</p>
             {% endif %}
         </div>
-        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50">
+        <button type="submit" class="button-primary w-full py-2">
             Save Profile
         </button>
     </form>

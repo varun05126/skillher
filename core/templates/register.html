@@ -3,69 +3,77 @@
 {% block title %}Register - SkillHer{% endblock %}
 
 {% block content %}
-<div class="glass-strong max-w-md mx-auto p-6 mt-10">
-    <h2 class="text-2xl font-bold mb-6 text-center">Register for SkillHer</h2>
+<div class="card max-w-md mx-auto p-6 mt-10">
+    <h2 class="text-2xl font-bold mb-6 text-center text-[var(--text-primary)]">Register for SkillHer</h2>
     {% if form.non_field_errors %}
-        <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-800 rounded">
+        <div class="mb-4 p-4 rounded-lg bg-[var(--error)]/10 text-[var(--error)] border border-[var(--error)]/20">
             {{ form.non_field_errors }}
         </div>
     {% endif %}
     <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
         <div class="mb-4">
-            <label for="{{ form.username.id_for_label }}" class="block mb-2 font-medium">{{ form.username.label }}</label>
+            <label for="{{ form.username.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.username.label }}
+            </label>
             <div class="relative">
-                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="{{ form.username.value|default_if_none:'' }}" placeholder="Username">
+                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="input w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" value="{{ form.username.value|default_if_none:'' }}" placeholder="Username">
                 {% if form.username.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.username.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.username.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.username.errors|first }}</p>
             {% endif %}
         </div>
         <div class="mb-4">
-            <label for="{{ form.email.id_for_label }}" class="block mb-2 font-medium">{{ form.email.label }}</label>
+            <label for="{{ form.email.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.email.label }}
+            </label>
             <div class="relative">
-                <input type="email" name="email" id="{{ form.email.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="{{ form.email.value|default_if_none:'' }}" placeholder="Email">
+                <input type="email" name="email" id="{{ form.email.id_for_label }}" class="input w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" value="{{ form.email.value|default_if_none:'' }}" placeholder="Email">
                 {% if form.email.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.email.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.email.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.email.errors|first }}</p>
             {% endif %}
         </div>
         <div class="mb-4">
-            <label for="{{ form.password1.id_for_label }}" class="block mb-2 font-medium">{{ form.password1.label }}</label>
+            <label for="{{ form.password1.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.password1.label }}
+            </label>
             <div class="relative">
-                <input type="password" name="password1" id="{{ form.password1.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Password">
+                <input type="password" name="password1" id="{{ form.password1.id_for_label }}" class="input w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" value="" placeholder="Password">
                 {% if form.password1.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.password1.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.password1.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.password1.errors|first }}</p>
             {% endif %}
         </div>
         <div class="mb-6">
-            <label for="{{ form.password2.id_for_label }}" class="block mb-2 font-medium">{{ form.password2.label }}</label>
+            <label for="{{ form.password2.id_for_label }}" class="block mb-2 font-medium text-[var(--text-primary)]">
+                {{ form.password2.label }}
+            </label>
             <div class="relative">
-                <input type="password" name="password2" id="{{ form.password2.id_for_label }}" class="glass w-full px-4 py-2 mb-2 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" value="" placeholder="Confirm Password">
+                <input type="password" name="password2" id="{{ form.password2.id_for_label }}" class="input w-full px-4 py-2 border border-[var(--border)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20" value="" placeholder="Confirm Password">
                 {% if form.password2.errors %}
-                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-red-500">⚠️</span>
+                    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--error)]">⚠️</span>
                 {% endif %}
             </div>
             {% if form.password2.errors %}
-                <p class="mt-1 text-sm text-red-600">{{ form.password2.errors|first }}</p>
+                <p class="mt-1 text-sm text-[var(--error)]">{{ form.password2.errors|first }}</p>
             {% endif %}
         </div>
-        <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <button type="submit" class="button-primary w-full py-2">
             Register
         </button>
     </form>
-    <p class="mt-6 text-center">
-        Already have an account? <a href="{% url 'login' %}" class="font-medium text-indigo-600 hover:text-indigo-800">Login</a>
+    <p class="mt-6 text-center text-[var(--text-secondary)]">
+        Already have an account? <a href="{% url 'login' %}" class="font-medium text-[var(--accent)] hover:text-[var(--accent-hover)]">Login</a>
     </p>
 </div>
 {% endblock %}

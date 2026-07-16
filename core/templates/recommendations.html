@@ -4,37 +4,37 @@
 
 {% block content %}
 <div class="max-w-xl mx-auto p-6 mt-10">
-    <h1 class="text-3xl font-bold mb-6 text-center">Your Recommendations</h1>
-    <p class="text-center mb-8">Based on your latest skill assessment, here are personalized suggestions to grow your skills.</p>
+    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Your Recommendations</h1>
+    <p class="text-center mb-8 text-[var(--text-secondary)]">Based on your latest skill assessment, here are personalized suggestions to grow your skills.</p>
 
     {% if recommendations %}
         <div class="space-y-6">
             <form method="post" action="{% url 'recommendations' %}">
                 {% csrf_token %}
-                <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2 mb-4">
+                <button type="submit" class="button-primary w-full text-center block py-2 mb-4">
                     Generate New Recommendations
                 </button>
             </form>
             {% for rec in recommendations %}
-            <div class="glass p-6">
-                <h2 class="text-xl font-bold mb-4">{{ rec.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ rec.description }}</p>
+            <div class="card p-6">
+                <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
+                <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
                 {% if rec.source %}
-                    <p class="text-sm text-indigo-600">Source: {{ rec.source }}</p>
+                    <p class="text-sm text-[var(--accent)]">Source: {{ rec.source }}</p>
                 {% endif %}
             </div>
             {% endfor %}
         </div>
-    {% else %}
-        <div class="glass p-6 text-center">
-            <p class="text-gray-600">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+    <% else %>
+        <div class="card p-6 text-center">
+            <p class="text-[var(--text-secondary)]">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
             <form method="post" action="{% url 'recommendations' %}">
                 {% csrf_token %}
-                <button type="submit" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2 mt-4">
+                <button type="submit" class="button-primary w-full py-2 mt-4">
                     Generate Recommendations
                 </button>
             </form>
-            <a href="{% url 'assessment' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus-ring-opacity-50 text-center block py-2 mt-2">
+            <a href="{% url 'assessment' %}" class="button-secondary w-full block py-2 mt-2">
                 Take Assessment
             </a>
         </div>
