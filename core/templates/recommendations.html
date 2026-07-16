@@ -2,26 +2,94 @@
 
 {% block title %}Recommendations - SkillHer{% endblock %}
 
+{% block extra_head %}
+<style>
+.timeline {
+    position: relative;
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+.timeline-marker {
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    z-index: 2;
+}
+.timeline-content {
+    margin-left: 60px;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
+}
+@media (max-width: 640px) {
+    .timeline {
+        padding-left: 0;
+    }
+    .timeline::before {
+        left: 10px;
+    }
+    .timeline-marker {
+        left: -14px;
+    }
+    .timeline-content {
+        margin-left: 40px;
+    }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="max-w-xl mx-auto p-6 mt-10">
     <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Your Recommendations</h1>
     <p class="text-center mb-8 text-[var(--text-secondary)]">Based on your latest skill assessment, here are personalized suggestions to grow your skills.</p>
 
     {% if recommendations %}
-        <div class="space-y-6">
-            <form method="post" action="{% url 'recommendations' %}">
-                {% csrf_token %}
-                <button type="submit" class="button-primary w-full text-center block py-2 mb-4">
-                    Generate New Recommendations
-                </button>
-            </form>
+        <form method="post" action="{% url 'recommendations' %}">
+            {% csrf_token %}
+            <button type="submit" class="button-primary w-full text-center block py-2 mb-4">
+                Generate New Recommendations
+            </button>
+        </form>
+        <div class="timeline">
             {% for rec in recommendations %}
-            <div class="card p-6">
-                <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
-                <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
-                {% if rec.source %}
-                    <p class="text-sm text-[var(--accent)]">Source: {{ rec.source }}</p>
-                {% endif %}
+            <div class="timeline-item">
+                <div class="timeline-marker">{{ forloop.counter }}</div>
+                <div class="timeline-content">
+                    <div class="card p-6">
+                        <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
+                        <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
+                        {% if rec.source %}
+                            <p class="text-sm text-[var(--accent)]">Source: {{ rec.source }}</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
