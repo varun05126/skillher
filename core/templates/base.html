@@ -6,71 +6,174 @@
     <title>{% block title %}SkillHer{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+        :root {
+            --bg-color: #F7F8FA;
+            --text-primary: #1E2A3A;
+            --text-secondary: #5A6472;
+            --accent: #2D8C8C;
+            --accent-hover: #257373;
+            --border: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
         }
-        .glass-strong {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-            border-radius: 12px;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        .input-glass {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 0.5rem 0.75rem;
-            transition: background 0.2s, border-color 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
-        .input-glass:focus {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
-        }
-        .btn-glass {
-            background: rgba(79, 70, 229, 0.4); /* indigo-600 with opacity */
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+
+        .button-primary {
+            background-color: var(--accent);
             color: white;
-            font-weight: 600;
-            transition: background 0.2s, transform 0.2s;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
-        .btn-glass:hover {
-            background: rgba(79, 70, 229, 0.5);
-            transform: translateY(-1px);
+
+        .button-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .button-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button-secondary:hover {
+            background-color: rgba(45, 140, 140, 0.05);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(45, 140, 140, 0.2);
+        }
+
+        .label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .space-x-4 > * + * {
+            margin-left: 1rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-lavender-100 to-blue-100 pt-16">
+<body>
     <!-- Navbar -->
-    <nav class="glass fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-white border-b border-[var(--border)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center">
-                <span class="font-bold text-xl text-gray-800">SkillHer</span>
+                <span class="font-bold text-xl text-[var(--text-primary)]">SkillHer</span>
             </div>
             <div class="hidden md:flex md:items-center md:space-x-6">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'dashboard' %}" class="text-gray-800 hover:text-gray-600">Dashboard</a>
-                    <a href="{% url 'assessment' %}" class="text-gray-800 hover:text-gray-600">Skill Assessment</a>
-                    <a href="{% url 'recommendations' %}" class="text-gray-800 hover:text-gray-600">Recommendations</a>
-                    <a href="{% url 'profile' %}" class="text-gray-800 hover:text-gray-600">Profile</a>
-                    <a href="{% url 'logout' %}" class="text-gray-800 hover:text-gray-600">Logout</a>
+                    <a href="{% url 'dashboard' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Dashboard</a>
+                    <a href="{% url 'assessment' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Skill Assessment</a>
+                    <a href="{% url 'recommendations' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Recommendations</a>
+                    <a href="{% url 'profile' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Profile</a>
+                    <a href="{% url 'logout' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Logout</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="text-gray-800 hover:text-gray-600">Login</a>
-                    <a href="{% url 'register' %}" class="text-gray-800 hover:text-gray-600">Register</a>
+                    <a href="{% url 'login' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Login</a>
+                    <a href="{% url 'register' %}" class="text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors">Register</a>
                 {% endif %}
             </div>
         </div>
@@ -78,19 +181,14 @@
 
     {% if messages %}
       {% for message in messages %}
-        <div class="glass p-4 mb-4 {{ message.tags }}">
+        <div class="mb-4 p-4 rounded-lg {% if message.tags == 'error' %}bg-[var(--error)]/10 text-[var(--error)] border border-[var(--error)]/20{% elif message.tags == 'success' %}bg-[var(--success)]/10 text-[var(--success)] border border-[var(--success)]/20{% elif message.tags == 'warning' %}bg-[var(--warning)]/10 text-[var(--warning)] border border-[var(--warning)]/20{% else %}bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20{% endif %}">
           {{ message }}
         </div>
       {% endfor %}
     {% endif %}
 
-    {% block content %}{% endblock %}
-
-    <!-- Glassmorphism blobs -->
-    <div class="fixed inset-0 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[200px] h-[200px] bg-pink-500/10 blur-3xl transform rotate-12"></div>
-        <div class="absolute top-[10%] right-[-10%] w-[300px] h-[300px] bg-lavender-500/10 blur-3xl transform rotate--10"></div>
-        <div class="absolute bottom-[-10%] left-[20%] w-[250px] h-[250px] bg-blue-500/10 blur-3xl transform rotate-5"></div>
+    <div class="container">
+        {% block content %}{% endblock %}
     </div>
 </body>
 </html>

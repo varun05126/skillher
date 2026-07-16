@@ -4,43 +4,43 @@
 
 {% block content %}
 <div class="max-w-xl mx-auto p-6 mt-10">
-    <h1 class="text-3xl font-bold mb-6 text-center">Welcome to SkillHer Dashboard</h1>
-    <p class="text-center mb-8">Here's an overview of your skill development journey.</p>
+    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Welcome to SkillHer Dashboard</h1>
+    <p class="text-center mb-8 text-[var(--text-secondary)]">Here's an overview of your skill development journey.</p>
 
     <div class="grid gap-6 md:grid-cols-2">
         <!-- Latest Assessment Card -->
-        <div class="glass p-6">
-            <h2 class="text-xl font-bold mb-4">Latest Skill Assessment</h2>
+        <div class="card p-6">
+            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Latest Skill Assessment</h2>
             {% if latest_assessment %}
-                <p class="text-gray-600 mb-4">{{ latest_assessment.skill_name }} - {{ latest_assessment.get_self_rated_level_display }}</p>
+                <p class="text-[var(--text-secondary)] mb-4">{{ latest_assessment.skill_name }} - {{ latest_assessment.get_self_rated_level_display }}</p>
             {% else %}
-                <p class="text-gray-600 mb-4">You haven't taken any assessments yet.</p>
+                <p class="text-[var(--text-secondary)] mb-4">You haven't taken any assessments yet.</p>
             {% endif %}
-            <a href="{% url 'assessment' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
+            <a href="{% url 'assessment' %}" class="button-primary w-full text-center block py-2">
                 Take Assessment
             </a>
         </div>
 
         <!-- Latest Recommendations Card -->
-        <div class="glass p-6">
-            <h2 class="text-xl font-bold mb-4">Recent Recommendations</h2>
+        <div class="card p-6">
+            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Recent Recommendations</h2>
             {% if latest_recommendation %}
-                <p class="text-gray-600 mb-4">{{ latest_recommendation.title }}</p>
-                <p class="text-gray-500">{{ latest_recommendation.description|truncatewords:20 }}</p>
+                <p class="text-[var(--text-secondary)] mb-4">{{ latest_recommendation.title }}</p>
+                <p class="text-[var(--text-secondary)]">{{ latest_recommendation.description|truncatewords:20 }}</p>
             {% else %}
-                <p class="text-gray-600 mb-4">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+                <p class="text-[var(--text-secondary)] mb-4">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
             {% endif %}
-            <a href="{% url 'recommendations' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
+            <a href="{% url 'recommendations' %}" class="button-primary w-full text-center block py-2">
                 View Recommendations
             </a>
         </div>
     </div>
 
     <!-- Profile Card -->
-    <div class="glass p-6 mt-8">
-        <h2 class="text-xl font-bold mb-4">Your Profile</h2>
-        <p class="text-gray-600">Complete your profile to better tailor your learning experience.</p>
-        <a href="{% url 'profile' %}" class="glass w-full text-indigo-600 hover:glass-strong hover:text-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 text-center block py-2">
+    <div class="card p-6 mt-8">
+        <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Your Profile</h2>
+        <p class="text-[var(--text-secondary)]">Complete your profile to better tailor your learning experience.</p>
+        <a href="{% url 'profile' %}" class="button-primary w-full text-center block py-2">
             Edit Profile
         </a>
     </div>
