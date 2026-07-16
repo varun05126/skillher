@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import View
 from django.contrib import messages
+from django.conf import settings
 from .models import Profile, SkillAssessment, Recommendation
 from .forms import BootstrapUserCreationForm, BootstrapAuthenticationForm, SkillAssessmentForm, ProfileForm
 import os
@@ -102,7 +103,8 @@ def recommendations(request):
         try:
             # Initialize Groq client
             api_key = os.environ.get('GROQ_API_KEY')
-            print(f"DEBUG: GROQ_API_KEY present: {bool(api_key)}")
+            if settings.DEBUG:
+                print(f"DEBUG: GROQ_API_KEY present: {bool(api_key)}")
             client = groq.Groq(api_key=api_key)
             # Call the Groq API
             chat_completion = client.chat.completions.create(
@@ -124,11 +126,13 @@ def recommendations(request):
 
             # Extract the response
             response_text = chat_completion.choices[0].message.content
-            print(f"Groq raw response: {response_text}")
+            if settings.DEBUG:
+                print(f"Groq raw response: {response_text}")
             # Parse the JSON
             data = json.loads(response_text)
             recommendations_list = data.get('recommendations', [])
-            print(f"Parsed recommendations list: {recommendations_list}")
+            if settings.DEBUG:
+                print(f"Parsed recommendations list: {recommendations_list}")
 
             # Save each recommendation
             for rec in recommendations_list[:3]:  # Ensure we only take up to 3
@@ -148,8 +152,18 @@ def recommendations(request):
                 messages.warning(request, 'Could not generate recommendations. Please try again.')
 
         except Exception as e:
-            print(f"Groq error: {e}")
-            messages.error(request, f'Error generating recommendations: {str(e)}')
+            if settings.DEBUG:
+                print(f"Groq error: {e}")
+            # Provide user-friendly error messages
+            error_msg = str(e)
+            if "api_key" in error_msg.lower() or "authentication" in error_msg.lower():
+                messages.error(request, 'Authentication error with AI service. Please contact support.')
+            elif "rate limit" in error_msg.lower():
+                messages.error(request, 'AI service is temporarily busy. Please try again in a few moments.')
+            elif "timeout" in error_msg.lower():
+                messages.error(request, 'Request timed out. Please try again.')
+            else:
+                messages.error(request, 'Unable to generate recommendations at this time. Please try again later.')
 
         return redirect('recommendations')
 

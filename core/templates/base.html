@@ -76,6 +76,14 @@
         </div>
     </nav>
 
+    {% if messages %}
+      {% for message in messages %}
+        <div class="glass p-4 mb-4 {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
     {% block content %}{% endblock %}
 
     <!-- Glassmorphism blobs -->
