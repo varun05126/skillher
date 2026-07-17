@@ -11,6 +11,7 @@ from .forms import BootstrapUserCreationForm, BootstrapAuthenticationForm, Skill
 import os
 import json
 import groq
+from datetime import datetime
 
 class RegisterView(View):
     template_name = 'register.html'
@@ -336,3 +337,159 @@ def profile(request):
         form = ProfileForm(instance=profile)
 
     return render(request, 'profile.html', {'form': form})
+
+
+@login_required
+def learning_roadmap(request):
+    """Generate and display a personalized learning roadmap"""
+    # Get the user's latest skill assessment
+    latest_assessment = SkillAssessment.objects.filter(user=request.user).order_by('-created_at').first()
+
+    # Get user profile for additional context
+    profile, created = Profile.objects.get_or_create(user=request.user)
+
+    # Get user's assessments for history
+    assessments = SkillAssessment.objects.filter(user=request.user).order_by('-created_at')
+
+    # Get existing recommendations if any
+    recommendations = Recommendation.objects.filter(user=request.user).order_by('-created_at')
+
+    if request.method == 'POST':
+        # Generate new roadmap
+        if not latest_assessment:
+            messages.error(request, 'Please complete a skill assessment before generating a learning roadmap.')
+            return redirect('assessment')
+
+        # Prepare prompt for Groq to generate learning roadmap
+        proficiency_info = f"{latest_assessment.proficiency}%" if hasattr(latest_assessment, 'proficiency') and latest_assessment.proficiency is not None else "Not assessed"
+
+        # Get list of skills user has been assessed on
+        assessed_skills = [a.skill_name for a in assessments]
+
+        prompt = f"""
+        Based on the following information, create a personalized learning roadmap for skill development that leads to the user's career goals.
+
+        USER PROFILE:
+        - Career goal: {profile.career_goal if profile.career_goal else 'Not specified'}
+        - Experience level: {profile.get_experience_level_display() if profile.experience_level else 'Not specified'}
+
+        CURRENT SKILLS ASSESSMENT:
+        - Primary skill: {latest_assessment.skill_name}
+        - Self-rated level: {latest_assessment.get_self_rated_level_display()}
+        - Years of experience: {dict(SkillAssessment.YEARS_OF_EXPERIENCE_CHOICES).get(latest_assessment.years_of_experience, 'Not specified') if latest_assessment.years_of_experience is not None else 'Not specified'}
+        - Confidence level: {latest_assessment.confidence_level}/5 if latest_assessment.confidence_level else 'Not specified'
+        - Proficiency level: {proficiency_info}
+        - Primary goal for this skill: {latest_assessment.primary_goal if latest_assessment.primary_goal else 'Not specified'}
+
+        PREVIOUSLY ASSESSED SKILLS:
+        {', '.join(assessed_skills) if assessed_skills else 'None yet'}
+
+        Generate a logical learning progression that builds from the user's current skills toward their career goals.
+        The roadmap should include 6-8 sequential steps (skills/topics to learn) that flow naturally from foundation to advanced topics.
+
+        Return a JSON object with:
+        1. "roadmap_title": A title for this learning journey
+        2. "steps": An array of objects, each containing:
+           - "title": The skill/topic to learn
+           - "description": A brief description of what to learn and why it's important
+           - "estimated_time": Suggested time to complete (e.g., "2-4 weeks")
+           - "resources": Array of suggested learning resource types (e.g., ["online course", "tutorial", "practice project"])
+        3. "final_goal": The ultimate career or skill goal this roadmap leads to
+        4. "total_duration": Estimated total time to complete the full roadmap
+
+        Make the progression logical, starting with foundational concepts and building to advanced topics that align with the user's career goal.
+        """
+
+        try:
+            # Initialize Groq client
+            api_key = os.environ.get('GROQ_API_KEY')
+            if settings.DEBUG:
+                print(f"DEBUG: GROQ_API_KEY present: {bool(api_key)}")
+            client = groq.Groq(api_key=api_key)
+            # Call the Groq API
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert learning architect and career advisor who creates personalized, sequential learning roadmaps for skill development."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                model="llama-3.3-70b-versatile",
+                temperature=0.7,
+                max_tokens=1500,
+                response_format={"type": "json_object"}
+            )
+
+            # Extract the response
+            response_text = chat_completion.choices[0].message.content
+            if settings.DEBUG:
+                print(f"Groq raw response: {response_text}")
+            # Parse the JSON
+            data = json.loads(response_text)
+
+            # Extract roadmap data
+            roadmap_title = data.get('roadmap_title', 'Your Learning Journey')
+            steps = data.get('steps', [])
+            final_goal = data.get('final_goal', 'Career Readiness')
+            total_duration = data.get('total_duration', 'Several months')
+
+            # Validate and clean the data
+            if not isinstance(steps, list):
+                steps = []
+
+            # Ensure each step has required fields
+            cleaned_steps = []
+            for step in steps:
+                if isinstance(step, dict):
+                    cleaned_step = {
+                        'title': str(step.get('title', 'Learning Step')),
+                        'description': str(step.get('description', 'Develop your skills')),
+                        'estimated_time': str(step.get('estimated_time', 'Variable')),
+                        'resources': step.get('resources', ['Online resources', 'Practice']) if isinstance(step.get('resources'), list) else ['Online resources', 'Practice']
+                    }
+                    cleaned_steps.append(cleaned_step)
+
+            # Store the roadmap in the session for display
+            request.session['learning_roadmap'] = {
+                'title': roadmap_title,
+                'steps': cleaned_steps,
+                'final_goal': final_goal,
+                'total_duration': total_duration,
+                'generated_at': datetime.now().isoformat()
+            }
+
+            messages.success(request, f'Generated your personalized learning roadmap with {len(cleaned_steps)} steps!')
+
+        except Exception as e:
+            if settings.DEBUG:
+                print(f"Groq error: {e}")
+            # Provide user-friendly error messages
+            error_msg = str(e)
+            if "api_key" in error_msg.lower() or "authentication" in error_msg.lower():
+                messages.error(request, 'Authentication error with AI service. Please contact support.')
+            elif "rate limit" in error_msg.lower():
+                messages.error(request, 'AI service is temporarily busy. Please try again in a few moments.')
+            elif "timeout" in error_msg.lower():
+                messages.error(request, 'Request timed out. Please try again.')
+            else:
+                messages.error(request, 'Unable to generate roadmap at this time. Please try again later.')
+
+        return redirect('learning_roadmap')
+
+    # GET request: show the learning roadmap
+    # Get roadmap from session if available, otherwise show empty state
+    roadmap_data = request.session.get('learning_roadmap', None)
+
+    context = {
+        'latest_assessment': latest_assessment,
+        'profile': profile,
+        'assessments': assessments,
+        'recommendations': recommendations,
+        'roadmap': roadmap_data,
+        'has_roadmap': roadmap_data is not None and len(roadmap_data.get('steps', [])) > 0,
+    }
+    return render(request, 'learning_roadmap.html', context)

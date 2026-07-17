@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Learning Roadmap - SkillHer{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-6 mt-10">
+    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Your Learning Roadmap</h1>
+    <p class="text-center mb-8 text-[var(--text-secondary)]">A personalized path to achieve your career goals</p>
+
+    {% if has_roadmap %}
+        <div class="mb-8">
+            <a href="{% url 'roadmap' %}"
+               class="button-primary inline-flex items-center px-4 py-2 mr-2 flex-wrap">
+                Refresh Roadmap
+            </a>
+            <a href="{% url 'assessment' %}"
+               class="button-secondary inline-flex items-center px-4 py-2 mr-2 flex-wrap">
+                Update Skills Assessment
+            </a>
+            <a href="{% url 'profile' %}"
+               class="button-secondary inline-flex items-center px-4 py-2 flex-wrap">
+                Update Career Goals
+            </a>
+        </div>
+
+        <!-- Roadmap Header -->
+        <div class="card mb-8">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-4 text-[var(--text-primary)]">{{ roadmap.title }}</h2>
+                <p class="text-[var(--text-secondary)] mb-4">{{ roadmap.final_goal }}</p>
+                {% if roadmap.total_duration %}
+                    <p class="text-[var(--text-secondary)] font-medium">Estimated completion: {{ roadmap.total_duration }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Roadmap Timeline -->
+        <div class="relative">
+            <div class="absolute inset-0 w-0.5 bg-[var(--gradient-start)]/20"></div>
+
+            {% for step in roadmap.steps %}
+                <div class="relative mb-12 last:mb-0">
+                    <!-- Timeline Marker -->
+                    <div class="absolute -left-2.5 top-3 w-5 h-5 rounded-full bg-[var(--accent)] flex items-center justify-center text-white text-sm font-bold">
+                        {{ forloop.counter }}
+                    </div>
+
+                    <!-- Step Content -->
+                    <div class="ml-8 bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center rounded-full">
+                                📚
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">{{ step.title }}</h3>
+                                <p class="text-[var(--text-secondary)] mb-4">{{ step.description }}</p>
+
+                                <div class="space-y-2">
+                                    <div class="flex items-start">
+                                        <span class="flex-shrink-0 text-[var(--text-secondary)] mr-2">⏱️</span>
+                                        <span class="text-[var(--text-secondary)]">Estimated time: <strong>{{ step.estimated_time }}</strong></span>
+                                    </div>
+
+                                    <div class="flex items-start mt-2">
+                                        <span class="flex-shrink-0 text-[var(--text-secondary)] mr-2">📚</span>
+                                        <span class="text-[var(--text-secondary)]">
+                                            Suggested resources:
+                                            {% for resource in step.resources %}
+                                                {{ resource }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="card">
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Track Your Progress</h2>
+                <p class="text-[var(--text-secondary)] mb-6">Mark off each step as you complete it to see your advancement toward {{ roadmap.final_goal }}.</p>
+
+                <div class="space-y-4">
+                    {% for step in roadmap.steps %}
+                        <div class="flex items-start space-x-4 p-4 bg-[var(--border)]/50 rounded-lg">
+                            <div class="flex-shrink-0 mt-1">
+                                <input type="checkbox" id="step-{{ forloop.counter }}" class="form-checkbox h-5 w-5 text-[var(--accent)]">
+                            </div>
+                            <div class="flex-1">
+                                <label for="step-{{ forloop.counter }}" class="block text-[var(--text-primary)] font-medium">{{ step.title }}</label>
+                                <p class="text-[var(--text-secondary)] text-sm mt-1">{{ step.estimated_time }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="card text-center py-12">
+            <h2 class="text-2xl font-bold mb-4 text-[var(--text-primary)]">No Roadmap Yet</h2>
+            <p class="text-[var(--text-secondary)] mb-6">
+                Complete a skill assessment to generate your personalized learning roadmap.
+            </p>
+
+            <div class="space-y-4">
+                <a href="{% url 'assessment' %}"
+                   class="button-primary w-full mx-auto max-w-xl px-6 py-3 flex items-center justify-center">
+                    Take Skills Assessment
+                </a>
+
+                <a href="{% url 'profile' %}"
+                   class="button-secondary w-full mx-auto max-w-xl px-6 py-3 flex items-center justify-center">
+                    Set Career Goals
+                </a>
+            </div>
+
+            <p class="mt-6 text-[var(--text-secondary)] text-sm">
+                Once you've completed your assessment, return here to generate a step-by-step learning plan
+                tailored to your current skills and career aspirations.
+            </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
