@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -50,6 +51,13 @@ class SkillAssessment(models.Model):
     frequency_use = models.CharField(max_length=10, choices=FREQUENCY_CHOICES, blank=True)
     formal_training = models.BooleanField(default=False)
     primary_goal = models.CharField(max_length=200, blank=True)
+    # New field for skill progress tracking (0-100%)
+    proficiency = models.IntegerField(
+        default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text="Proficiency percentage (0-100)",
+        verbose_name="Proficiency Level (%)"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

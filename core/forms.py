@@ -38,7 +38,7 @@ class BootstrapUserCreationForm(UserCreationForm):
 class SkillAssessmentForm(forms.ModelForm):
     class Meta:
         model = SkillAssessment
-        fields = ['skill_name', 'self_rated_level', 'years_of_experience', 'confidence_level', 'frequency_use', 'formal_training', 'primary_goal']
+        fields = ['skill_name', 'self_rated_level', 'years_of_experience', 'confidence_level', 'frequency_use', 'formal_training', 'primary_goal', 'proficiency']
         widgets = {
             'skill_name': forms.TextInput(attrs={
                 'class': 'input-glass block w-full mt-1',
@@ -62,6 +62,12 @@ class SkillAssessmentForm(forms.ModelForm):
             'primary_goal': forms.TextInput(attrs={
                 'class': 'input-glass block w-full mt-1',
                 'placeholder': "What's your primary goal for improving this skill?"
+            }),
+            'proficiency': forms.NumberInput(attrs={
+                'class': 'input-glass block w-full mt-1',
+                'min': 0,
+                'max': 100,
+                'placeholder': 'Proficiency percentage (0-100)'
             }),
         }
 

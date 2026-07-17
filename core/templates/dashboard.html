@@ -3,46 +3,168 @@
 {% block title %}Dashboard - SkillHer{% endblock %}
 
 {% block content %}
-<div class="max-w-xl mx-auto p-6 mt-10">
-    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Welcome to SkillHer Dashboard</h1>
-    <p class="text-center mb-8 text-[var(--text-secondary)]">Here's an overview of your skill development journey.</p>
+<div class="space-y-8">
+    <!-- Welcome Header -->
+    <div class="text-center">
+        <h1 class="text-3xl font-bold text-[var(--text-primary)] mb-2">Welcome back, {{ user.username }}!</h1>
+        <p class="text-xl text-[var(--text-secondary)]">Your skill development dashboard</p>
+    </div>
 
-    <div class="grid gap-6 md:grid-cols-2">
-        <!-- Latest Assessment Card -->
-        <div class="card p-6">
-            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Latest Skill Assessment</h2>
-            {% if latest_assessment %}
-                <p class="text-[var(--text-secondary)] mb-4">{{ latest_assessment.skill_name }} - {{ latest_assessment.get_self_rated_level_display }}</p>
-            {% else %}
-                <p class="text-[var(--text-secondary)] mb-4">You haven't taken any assessments yet.</p>
-            {% endif %}
-            <a href="{% url 'assessment' %}" class="button-primary w-full text-center block py-2">
-                Take Assessment
-            </a>
+    <!-- Stats Grid -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Assessments -->
+        <div class="card flex flex-col items-center py-6">
+            <div class="text-[var(--accent)] mb-4">
+                📊
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-[var(--text-primary)]">Assessments Completed</h3>
+            <p class="text-4xl font-bold text-[var(--accent)]">{{ assessment_count }}</p>
         </div>
 
-        <!-- Latest Recommendations Card -->
-        <div class="card p-6">
-            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Recent Recommendations</h2>
-            {% if latest_recommendation %}
-                <p class="text-[var(--text-secondary)] mb-4">{{ latest_recommendation.title }}</p>
-                <p class="text-[var(--text-secondary)]">{{ latest_recommendation.description|truncatewords:20 }}</p>
+        <!-- Total Recommendations -->
+        <div class="card flex flex-col items-center py-6">
+            <div class="text-[var(--accent)] mb-4">
+                💡
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-[var(--text-primary)]">Recommendations</h3>
+            <p class="text-4xl font-bold text-[var(--accent)]">{{ recommendation_count }}</p>
+        </div>
+
+        <!-- Current Skill Level -->
+        <div class="card flex flex-col items-center py-6">
+            <div class="text-[var(--accent)] mb-4">
+                🎯
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-[var(--text-primary)]">Current Level</h3>
+            {% if latest_assessment %}
+                <p class="text-2xl font-semibold text-[var(--accent)] capitalize">{{ latest_assessment.get_self_rated_level_display }}</p>
+                <p class="text-sm text-[var(--text-secondary)] mt-1">{{ latest_assessment.skill_name }}</p>
             {% else %}
-                <p class="text-[var(--text-secondary)] mb-4">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+                <p class="text-2xl font-semibold text-[var(--accent)]">Beginner</p>
+                <p class="text-sm text-[var(--text-secondary)] mt-1">Start an assessment</p>
             {% endif %}
-            <a href="{% url 'recommendations' %}" class="button-primary w-full text-center block py-2">
-                View Recommendations
-            </a>
+        </div>
+
+        <!-- Learning Progress -->
+        <div class="card flex flex-col items-center py-6">
+            <div class="text-[var(--accent)] mb-4">
+                📈
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-[var(--text-primary)]">Learning Progress</h3>
+            <div class="w-full bg-[var(--border)] rounded-full h-2.5 mt-4">
+                <div class="bg-[var(--gradient-start)] h-2.5 rounded-full transition-all duration-750" style="width: {{ progress_percentage }}%"></div>
+            </div>
+            <p class="mt-2 text-lg font-semibold text-[var(--accent)]">{{ progress_percentage }}%</p>
+            <p class="text-sm text-[var(--text-secondary)] mt-1">{{ assessment_count }} assessments completed</p>
         </div>
     </div>
 
-    <!-- Profile Card -->
-    <div class="card p-6 mt-8">
-        <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Your Profile</h2>
-        <p class="text-[var(--text-secondary)]">Complete your profile to better tailor your learning experience.</p>
-        <a href="{% url 'profile' %}" class="button-primary w-full text-center block py-2">
-            Edit Profile
-        </a>
+    <!-- Skill Progress -->
+    <div class="card">
+        <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Skill Progress</h2>
+        {% if all_assessments %}
+            <div class="space-y-4">
+                {% for assessment in all_assessments %}
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <span class="font-medium text-[var(--text-primary)]">{{ assessment.skill_name }}</span>
+                            <span class="text-sm text-[var(--text-secondary)]">{{ assessment.proficiency }}%</span>
+                        </div>
+                        <div class="w-full bg-[var(--border)] rounded-full h-2.5">
+                            <div class="bg-[var(--gradient-start)] h-2.5 rounded-full transition-all duration-750" style="width: {{ assessment.proficiency }}%"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-[var(--text-secondary)] text-center py-8">No skills assessed yet. Take your first skill assessment to see your progress!</p>
+        {% endif %}
+    </div>
+
+    <!-- Recent Activity & Quick Actions -->
+    <div class="grid gap-6 md:grid-cols-2">
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="flex justify-between items-start mb-4">
+                <h2 class="text-xl font-bold text-[var(--text-primary)]">Recent Activity</h2>
+                {% if recent_activity %}
+                    <a href="#" class="text-sm text-[var(--accent)] hover:text-[var(--accent-hover)]">See all</a>
+                {% endif %}
+            </div>
+
+            {% if recent_activity %}
+                <div class="space-y-3">
+                    {% for activity in recent_activity %}
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 p-3 bg-[var(--border)] rounded-lg">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-[var(--accent)]">
+                                        {% if activity.type == 'assessment' %}
+                                            📊
+                                        {% else %}
+                                            💡
+                                        {% endif %}
+                                    </span>
+                                    <span class="text-sm font-medium text-[var(--text-primary)]">
+                                        {{ activity.description }}
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+                                    <span>{{ activity.date|timesince }} ago</span>
+                                    {% if activity.type == 'assessment' and activity.level and activity.level != 'Beginner' %}
+                                        <span class="bg-[var(--border)] px-2 py-1 rounded text-[var(--text-secondary)]">{{ activity.level }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-[var(--text-secondary)] text-center py-8">No recent activity yet. Start by taking a skill assessment!</p>
+            {% endif %}
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">Quick Actions</h2>
+            <div class="space-y-4">
+                <a href="{% url 'assessment' %}"
+                   class="flex items-center justify-between p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl text-[var(--accent)]">📊</div>
+                        <div>
+                            <h3 class="font-semibold text-[var(--text-primary)]">Take Skill Assessment</h3>
+                            <p class="text-sm text-[var(--text-secondary)]">Evaluate your current skills</p>
+                        </div>
+                    </div>
+                    <span class="text-[var(--accent)]">→</span>
+                </a>
+
+                <a href="{% url 'recommendations' %}"
+                   class="flex items-center justify-between p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl text-[var(--accent)]">💡</div>
+                        <div>
+                            <h3 class="font-semibold text-[var(--text-primary)]">Get Recommendations</h3>
+                            <p class="text-sm text-[var(--text-secondary)]">Get personalized learning suggestions</p>
+                        </div>
+                    </div>
+                    <span class="text-[var(--accent)]">→</span>
+                </a>
+
+                <a href="{% url 'profile' %}"
+                   class="flex items-center justify-between p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl text-[var(--accent)]">👤</div>
+                        <div>
+                            <h3 class="font-semibold text-[var(--text-primary)]">Update Profile</h3>
+                            <p class="text-sm text-[var(--text-secondary)]">Share your goals and background</p>
+                        </div>
+                    </div>
+                    <span class="text-[var(--accent)]">→</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

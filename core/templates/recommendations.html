@@ -67,65 +67,140 @@
 
 {% block content %}
 <div class="max-w-xl mx-auto p-6 mt-10">
-    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Your Recommendations</h1>
-    <p class="text-center mb-8 text-[var(--text-secondary)]">Based on your latest skill assessment, here are personalized suggestions to grow your skills.</p>
+    <h1 class="text-3xl font-bold mb-6 text-center text-[var(--text-primary)]">Skills Gap Analysis</h1>
+    <p class="text-center mb-8 text-[var(--text-secondary)]">Personalized analysis of your skills and learning path</p>
 
-    {% if newest_batch or older_batches %}
+    {% if has_analysis %}
         <form method="post" action="{% url 'recommendations' %}">
             {% csrf_token %}
-            <button type="submit" class="button-primary w-full text-center block py-2 mb-4">
-                Generate New Recommendations
+            <button type="submit" class="button-primary w-full text-center block py-2 mb-6">
+                Refresh Analysis
             </button>
         </form>
-        {% if newest_batch %}
-            <h2 class="text-2xl font-bold mb-4 text-center text-[var(--text-primary)]">New</h2>
-            <div class="timeline">
-                {% for rec in newest_batch %}
-                <div class="timeline-item">
-                    <div class="timeline-marker">{{ forloop.counter }}</div>
-                    <div class="timeline-content">
-                        <div class="card p-6">
-                            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
-                            <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
-                            <p class="text-xs text-[var(--text-secondary)] italic">
-                                Generated {{ rec.created_at|date:"M d, Y, g:i a" }}
-                            </p>
+
+        <!-- Skills Analysis Cards -->
+        <div class="grid gap-6 mb-8">
+            <!-- Current Skills Card -->
+            {% if current_skills_item %}
+            <div class="card h-full">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-[var(--gradient-start)]/20 text-[var(--accent)] flex items-center justify-center rounded-lg shrink-0">
+                        ✅
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">Current Skills</h2>
+                        <p class="text-[var(--text-secondary)] whitespace-pre-line">{{ current_skills_item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Missing Skills Card -->
+            {% if missing_skills_item %}
+            <div class="card h-full">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-[var(--warning)]/20 text-[var(--warning)] flex items-center justify-center rounded-lg shrink-0">
+                        ⚠️
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">Skills to Develop</h2>
+                        <p class="text-[var(--text-secondary)] whitespace-pre-line">{{ missing_skills_item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Recommended Skills Card -->
+            {% if recommended_skills_item %}
+            <div class="card h-full">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-[var(--info)]/20 text-[var(--info)] flex items-center justify-center rounded-lg shrink-0">
+                        🎯
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">Recommended Learning Focus</h2>
+                        <p class="text-[var(--text-secondary)] whitespace-pre-line">{{ recommended_skills_item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Career Readiness Card -->
+            {% if career_readiness_item %}
+            <div class="card h-full">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-[var(--accent)]/20 text-[var(--accent)] flex items-center justify-center rounded-lg shrink-0">
+                        💼
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">Career Readiness</h2>
+                        <div class="space-y-3">
+                            <p class="text-3xl font-bold text-[var(--accent)]">{{ career_readiness_item.description }}</p>
+                            <div class="w-full bg-[var(--border)] rounded-full h-2.5 mt-2">
+                                <div class="bg-[var(--gradient-start)] h-2.5 rounded-full transition-all duration-750"
+                                     style="width: {{ career_readiness_item.description|replace:'%':'|slice:%22:-1,%22-1%22|replace:'%22',''|replace:' ',''|int }}%"></div>
+                            </div>
+                            <p class="text-sm text-[var(--text-secondary)]">Based on your assessment and goals</p>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-        {% endif %}
-        {% if older_batches %}
-            <h2 class="text-2xl font-bold mb-4 mt-8 text-center text-[var(--text-primary)]">Previous</h2>
-            <div class="timeline">
-                {% for rec in older_batches %}
-                <div class="timeline-item">
-                    <div class="timeline-marker">{{ forloop.counter }}</div>
-                    <div class="timeline-content">
-                        <div class="card p-6">
-                            <h2 class="text-xl font-bold mb-4 text-[var(--text-primary)]">{{ rec.title }}</h2>
-                            <p class="text-[var(--text-secondary)] mb-4">{{ rec.description }}</p>
-                            <p class="text-xs text-[var(--text-secondary)] italic">
-                                Generated {{ rec.created_at|date:"M d, Y, g:i a" }}
-                            </p>
-                        </div>
+            {% endif %}
+
+            <!-- Next Steps Card -->
+            {% if next_steps_item %}
+            <div class="card h-full">
+                <div class="flex items-start space-x-4">
+                    <div class="w-12 h-12 bg-[var(--success)]/20 text-[var(--success)] flex items-center justify-center rounded-lg shrink-0">
+                        🚀
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2 text-[var(--text-primary)]">Recommended Next Steps</h2>
+                        <p class="text-[var(--text-secondary)] whitespace-pre-line">{{ next_steps_item.description }}</p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-        {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="space-y-4">
+            <a href="{% url 'assessment' %}"
+               class="flex items-center justify-between p-4 bg-[var(--border)] rounded-lg hover:bg-[var(--border)]/50 transition-colors">
+                <div class="flex items-center gap-3">
+                    <div class="text-2xl text-[var(--accent)]">📊</div>
+                    <div>
+                        <h3 class="font-semibold text-[var(--text-primary)]">Retake Skill Assessment</h3>
+                        <p class="text-sm text-[var(--text-secondary)]">Update your skill profile</p>
+                    </div>
+                </div>
+                <span class="text-[var(--accent)]">→</span>
+            </a>
+
+            <a href="{% url 'profile' %}"
+               class="flex items-center justify-between p-4 bg-[var(--border)] rounded-lg hover-bg-[var(--border)]/50 transition-colors">
+                <div class="flex items-center gap-3">
+                    <div class="text-2xl text-[var(--accent)]">👤</div>
+                    <div>
+                        <h3 class="font-semibold text-[var(--text-primary)]">Update Career Goals</h3>
+                        <p class="text-sm text-[var(--text-secondary)]">Refine your professional objectives</p>
+                    </div>
+                </div>
+                <span class="text-[var(--accent)]">→</span>
+            </a>
+        </div>
+
     {% else %}
         <div class="card p-6 text-center">
-            <p class="text-[var(--text-secondary)]">No recommendations yet. Complete an assessment to get personalized suggestions.</p>
+            <p class="text-[var(--text-secondary)]">No skills analysis yet. Complete an assessment to get your personalized skills gap analysis.</p>
             <form method="post" action="{% url 'recommendations' %}">
                 {% csrf_token %}
                 <button type="submit" class="button-primary w-full py-2 mt-4">
-                    Generate Recommendations
+                    Generate Skills Analysis
                 </button>
             </form>
             <a href="{% url 'assessment' %}" class="button-secondary w-full block py-2 mt-2">
-                Take Assessment
+                Take Skill Assessment
             </a>
         </div>
     {% endif %}
