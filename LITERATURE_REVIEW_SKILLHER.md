@@ -628,9 +628,9 @@ The need for specialized AI-powered skill development platforms for women is sup
 | Literature/Scoping Review (Qualitative) | Papers 1, 8 |
 | Mixed-Methods (Survey + Applied Study) | Papers 2, 3, 4 |
 | Systematic Review + Meta-Analysis | Papers 6, 9 |
-| Systematic Review + ML/NLP/DL/RL techniques (survey of techniques, not original implementation) | Papers 5, 7 |
-| NLP + ML-based Recommendation System (original implementation) | Paper 10 |
-| **Deep Reinforcement Learning + Explainable AI (original implementation)** | **Paper 11** |
+| Systematic Review + ML/NLP/DL/RL techniques (survey of techniques) | Papers 5, 7 |
+| NLP + ML-based Recommendation System | Paper 10 |
+| **Deep Reinforcement Learning** | **Paper 11** |
 
 **Why this matters:** Paper 11 is the only paper in the set that uses **Deep RL** as its core method — this fills a methodological gap, since Papers 1–10 lean almost entirely on classification/clustering-style ML, NLP, or pure literature synthesis. Its inclusion demonstrates the review covers the *full spectrum* of AI techniques applied to skill/career recommendation — supervised ML, NLP, and sequential decision-making (RL) approaches — even though SkillHer itself implements a lighter-weight Groq-LLM approach rather than RL.
 
