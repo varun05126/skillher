@@ -2,7 +2,7 @@
 
 **AI-Powered Skill Development and Recommendation Platform for Women**
 
-A synthesis of 10 peer-reviewed studies (2023–2026) from Springer, Frontiers, and MDPI, paired with the project objectives they inform.
+A synthesis of 11 peer-reviewed studies (2023–2026) from Springer, Frontiers, MDPI, and ACM, paired with the project objectives they inform.
 
 ---
 
@@ -33,7 +33,9 @@ A synthesis of 10 peer-reviewed studies (2023–2026) from Springer, Frontiers, 
   - [Paper 8 — Key Barriers to Personalized Learning](#paper-8-key-barriers-to-personalized-learning-in-times-of-artificial-intelligence-a-literature-review)
   - [Paper 9 — Adaptive Learning Using AI in E-Learning](#paper-9-adaptive-learning-using-artificial-intelligence-in-e-learning-a-literature-review)
   - [Paper 10 — AI-Enabled Intelligent Assistant](#paper-10-artificial-intelligence-enabled-intelligent-assistant-for-personalized-and-adaptive-learning-in-higher-education)
+  - [Paper 11 — Market-aware Job Skill Recommendation with Explainable Deep RL](#paper-11-market-aware-long-term-job-skill-recommendation-with-explainable-deep-reinforcement-learning)
 - [Comparative Analysis Table](#comparative-analysis-table)
+- [Methodology Distribution Across All 11 Papers](#methodology-distribution-across-all-11-papers)
 - [Research Gap Analysis](#research-gap-analysis)
   - [Gap 1: Lack of Integrated Women-Focused Platforms](#gap-1-lack-of-integrated-women-focused-platforms-combining-skill-assessment-personalized-learning-and-mentorship)
   - [Gap 2: Limited Longitudinal Studies](#gap-2-limited-longitudinal-studies-on-career-outcomes-of-ai-powered-interventions)
@@ -96,13 +98,13 @@ Create an accessible and supportive digital platform focused on empowering women
 
 ## Abstract
 
-This literature review examines recent research on artificial intelligence applications in women's career development, personalized learning systems, and skill gap analysis to inform the development of SkillHer—an AI-powered women career development platform. The review synthesizes findings from 10 peer-reviewed papers published between 2023-2026 from leading publishers including Springer, Frontiers, and MDPI. Key themes identified include AI-driven career guidance, personalized learning pathways, skill assessment methodologies, and adaptive learning systems. The analysis reveals significant gaps in integrated platforms specifically designed for women's career advancement that combine AI recommendations, skill assessment, personalized learning, and mentorship support. This review establishes the theoretical foundation for SkillHer, proposing an integrated solution leveraging React, TypeScript, Tailwind CSS, Django, Django REST Framework, JWT authentication, and Groq AI to address identified research gaps.
+This literature review examines recent research on artificial intelligence applications in women's career development, personalized learning systems, skill gap analysis, and explainable skill recommendation to inform the development of SkillHer—an AI-powered women career development platform. The review synthesizes findings from 11 peer-reviewed papers published between 2023-2026 from leading publishers including Springer, Frontiers, MDPI, and ACM. Key themes identified include AI-driven career guidance, personalized learning pathways, skill assessment methodologies, adaptive learning systems, and explainable deep-learning-based recommendation. The analysis reveals significant gaps in integrated platforms specifically designed for women's career advancement that combine AI recommendations, skill assessment, personalized learning, and mentorship support. This review establishes the theoretical foundation for SkillHer, proposing an integrated solution leveraging React, TypeScript, Tailwind CSS, Django, Django REST Framework, JWT authentication, and Groq AI to address identified research gaps.
 
 ## Introduction
 
 The rapid advancement of artificial intelligence has transformed education and skill development landscapes, offering unprecedented opportunities for personalized learning and skill enhancement. However, women continue to face unique challenges in skill development progression, including skill gaps, limited access to mentorship, and systemic barriers in male-dominated industries. This literature review investigates current research at the intersection of AI, skill development, and women's empowerment to inform the design of SkillHer—a comprehensive platform designed to address these challenges through AI-powered personalized skill guidance, skill assessment, adaptive learning pathways, and mentorship support.
 
-The review focuses on publications from 2023-2026 that examine AI applications in skill guidance, personalized learning systems, skill gap analysis, and adaptive learning technologies. By synthesizing findings across these domains, this review identifies effective methodologies, highlights limitations of existing approaches, and establishes a foundation for developing an integrated solution specifically tailored to women's skill development needs.
+The review focuses on publications from 2023-2026 that examine AI applications in skill guidance, personalized learning systems, skill gap analysis, adaptive learning technologies, and — with the addition of Paper 11 — explainable deep reinforcement learning for market-aware skill recommendation. By synthesizing findings across these domains, this review identifies effective methodologies, highlights limitations of existing approaches, and establishes a foundation for developing an integrated solution specifically tailored to women's skill development needs.
 
 ## Problem Statement
 
@@ -157,6 +159,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2026
 * **DOI**: [10.1007/s10775-026-09807-0](https://doi.org/10.1007/s10775-026-09807-0)
 * **Official URL**: https://link.springer.com/article/10.1007/s10775-026-09807-0
+* **Methodology Type**: Scoping Review (Qualitative, PRISMA-ScR)
 
 **Detailed Abstract Summary**: This scoping review examines the current landscape of AI applications in women's skill development, analyzing empirical evidence on how AI technologies are integrated into skill guidance and organizational decision systems. The study identifies key application areas including skill gap analysis, personalized learning recommendations, skill matching algorithms, and bias mitigation in learning processes. Despite growing implementation, the authors note limited empirical evidence on effectiveness and long-term outcomes, particularly regarding sustained skill advancement and retention benefits.
 
@@ -196,6 +199,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2024
 * **DOI**: [10.1007/s44282-024-00072-6](https://doi.org/10.1007/s44282-024-00072-6)
 * **Official URL**: https://link.springer.com/article/10.1007/s44282-024-00072-6
+* **Methodology Type**: Mixed-Methods (Systematic Review + Case Studies + Predictive Analytics)
 
 **Detailed Abstract Summary**: This paper investigates how artificial intelligence is transforming early career planning education by enabling tailored guidance, predictive analytics for career pathways, and adaptive learning environments. The study examines AI applications in educational settings that help students identify suitable career paths based on their skills, interests, and market demands. Particular attention is given to how AI can address gender disparities in career choices by providing unbiased recommendations and exposing women to non-traditional career paths.
 
@@ -236,6 +240,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2024
 * **DOI**: [10.3389/feduc.2024.1474584](https://doi.org/10.3389/feduc.2024.1474584)
 * **Official URL**: https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2024.1474584/full
+* **Methodology Type**: Applied Intervention Study (AI-Assisted Assessment + Human/AI Mentorship)
 
 **Detailed Abstract Summary**: This study proposes an education model designed to address the gender gap in tech entrepreneurship through a comprehensive approach combining technical skill development, business acumen training, mentorship networks, and confidence-building activities. The model integrates AI-powered personalized learning paths, virtual mentorship matching, and simulated entrepreneurial challenges to create a supportive ecosystem for women entering tech entrepreneurship. Evaluation with 120 participants showed significant improvements in entrepreneurial self-efficacy and intention to launch tech ventures.
 
@@ -276,6 +281,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2025
 * **DOI**: [10.3389/fsoc.2025.1604857](https://doi.org/10.3389/fsoc.2025.1604857)
 * **Official URL**: https://www.frontiersin.org/journals/sociology/articles/10.3389/fsoc.2025.1604857/full
+* **Methodology Type**: Mixed-Methods Field Study (Surveys + Interviews + AI Analytics)
 
 **Detailed Abstract Summary**: This article examines how digital technologies, particularly AI-driven tools, can empower women in the South African public sector by enhancing access to information, improving service delivery, and creating new opportunities for career advancement. The study analyzes the implementation of digital literacy programs, AI-assisted administrative systems, and online professional development platforms designed specifically for women in government positions. Findings indicate that targeted digital interventions significantly improve women's professional confidence, technical competencies, and career progression opportunities within public sector institutions.
 
@@ -316,6 +322,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2024
 * **DOI**: [10.3390/electronics13183762](https://doi.org/10.3390/electronics13183762)
 * **Official URL**: https://www.mdpi.com/2079-9292/13/18/3762
+* **Methodology Type**: Systematic Review + ML/NLP (Cognitive Modeling)
 
 **Detailed Abstract Summary**: This systematic analysis explores how artificial intelligence, when combined with principles of cognitive neuropsychology, can create more effective personalized learning and adaptive assessment systems in e-learning environments. The study examines how AI algorithms can model cognitive processes, learning styles, and knowledge retention patterns to deliver truly individualized educational experiences. The authors analyze various AI techniques including machine learning for predicting learning difficulties, natural language processing for assessing conceptual understanding, and adaptive recommendation systems that adjust content difficulty based on real-time performance data.
 
@@ -356,6 +363,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2025
 * **DOI**: [10.3390/higheredu4020017](https://doi.org/10.3390/higheredu4020017)
 * **Official URL**: https://www.mdpi.com/2813-4346/4/2/17
+* **Methodology Type**: Systematic Review + Meta-Analysis (Effect Sizes)
 
 **Detailed Abstract Summary**: This systematic review examines the impact of artificial intelligence on personalized learning implementations in higher education contexts, analyzing empirical evidence from 62 studies published between 2018-2024. The study evaluates how AI technologies affect learning outcomes, student engagement, instructional efficiency, and equity in educational opportunities. Particular attention is given to adaptive learning platforms, intelligent tutoring systems, and AI-driven recommendation engines that customize educational content based on individual learner profiles, performance data, and learning preferences.
 
@@ -398,6 +406,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2025
 * **DOI**: [10.3390/app151810096](https://doi.org/10.3390/app151810096)
 * **Official URL**: https://www.mdpi.com/2076-3417/15/18/10096
+* **Methodology Type**: Systematic Review + DL/NLP/RL Techniques
 
 **Detailed Abstract Summary**: This systematic review analyzes leading articles on artificial intelligence applications for personalized learning in higher education, identifying current trends, methodologies, and future directions. The study examines how AI technologies are being used to create adaptive learning environments, intelligent tutoring systems, and personalized recommendation engines that respond to individual learner needs. Particular focus is given to recent advances in deep learning for educational data mining, natural language processing for automated feedback, and reinforcement learning for optimizing learning pathways. The review synthesizes findings from 48 high-impact studies published between 2020-2024 to provide a comprehensive overview of the state-of-the-art in AI-driven personalized learning.
 
@@ -439,6 +448,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2025
 * **DOI**: [10.3390/app15063103](https://doi.org/10.3390/app15063103)
 * **Official URL**: https://www.mdpi.com/2076-3417/15/6/3103
+* **Methodology Type**: Literature Review (Qualitative, Barrier Analysis)
 
 **Detailed Abstract Summary**: This literature review identifies and analyzes critical barriers to implementing effective personalized learning systems in the age of artificial intelligence. The study examines technical, pedagogical, ethical, and institutional challenges that hinder the successful deployment of AI-driven personalized learning technologies. Through systematic analysis of 89 studies published between 2018-2024, the authors categorize barriers into five main domains: (1) Technical and infrastructural limitations, (2) Pedagogical and instructional challenges, (3) Ethical and privacy concerns, (4) Institutional and organizational obstacles, and (5) Learner-related factors. The review provides evidence-based recommendations for overcoming these barriers to create more equitable and effective personalized learning ecosystems.
 
@@ -480,6 +490,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2023
 * **DOI**: [10.3390/educsci13121216](https://doi.org/10.3390/educsci13121216)
 * **Official URL**: https://www.mdpi.com/2227-7102/13/12/1216
+* **Methodology Type**: Literature Review + ML (Classification: Decision Trees, Neural Networks)
 
 **Detailed Abstract Summary**: This literature review examines the application of artificial intelligence in adaptive learning systems within e-learning environments, analyzing current methodologies, technologies, and effectiveness. The study surveys how AI techniques are used to dynamically adjust learning content, pacing, and difficulty based on individual learner performance, preferences, and evolving knowledge states. Through analysis of 67 studies published between 2015-2022, the authors identify prevailing AI approaches for adaptation, evaluate their effectiveness across different learning domains, and highlight trends in intelligent tutoring systems, recommendation engines, and competency-based progression models. The review provides insights into both the technological capabilities and pedagogical implications of AI-driven adaptive learning.
 
@@ -521,6 +532,7 @@ The need for specialized AI-powered skill development platforms for women is sup
 * **Year**: 2024
 * **DOI**: [10.3390/info15100596](https://doi.org/10.3390/info15100596)
 * **Official URL**: https://www.mdpi.com/2078-2489/15/10/596
+* **Methodology Type**: Applied Deployment — NLP + ML Recommendation System (Quasi-Experimental)
 
 **Detailed Abstract Summary**: This study presents the development and evaluation of an AI-powered intelligent assistant designed to provide personalized and adaptive learning support in higher education contexts. The system combines natural language processing for understanding student queries, machine learning for predicting learning difficulties, and recommendation engines for suggesting relevant resources and learning activities. Evaluation with 180 undergraduate students across three semesters showed significant improvements in learning outcomes, engagement, and satisfaction compared to traditional learning management systems. The assistant demonstrated particular effectiveness in providing timely feedback, identifying misconceptions, and adapting support based on individual learning patterns.
 
@@ -554,49 +566,100 @@ The need for specialized AI-powered skill development platforms for women is sup
 
 </details>
 
+<details>
+<summary><b>Paper 11: Market-aware Long-term Job Skill Recommendation with Explainable Deep Reinforcement Learning</b></summary>
+
+* **Title**: Market-aware Long-term Job Skill Recommendation with Explainable Deep Reinforcement Learning
+* **Authors**: Ying Sun, Yang Ji, Hengshu Zhu, Fuzhen Zhuang, Qing He, Hui Xiong
+* **Publisher**: ACM Transactions on Information Systems (ACM TOIS)
+* **Year**: 2025
+* **DOI**: [10.1145/3704998](https://doi.org/10.1145/3704998)
+* **Official URL**: https://dl.acm.org/doi/10.1145/3704998
+* **Methodology Type**: Deep Reinforcement Learning (Multi-objective Deep Q-Network) + Explainable AI (Prototype-based Learning)
+
+**Detailed Abstract Summary**: This paper proposes a skill recommendation system that models the long-term salary benefit and learning difficulty cost of acquiring a skill, rather than relying on simple relevance-based matching. It introduces SRDQN (a multi-objective deep Q-network) and SeSRDQN (a self-explaining variant using prototype-based reasoning) to generate skill learning paths that are both effective and interpretable, validated on 805,182 real job postings.
+
+**Methodology**: Deep Reinforcement Learning (multi-objective Deep Q-Network) combined with prototype-based explainable AI. Skill learning is modeled as a sequential decision-making (Markov Decision Process) problem, where salary and learning difficulty are separate reward signals learned via a salary estimator (soft job-matching probability model) and a difficulty estimator (frequent itemset mining + conditional probability). SeSRDQN adds a prototype layer trained with clustering, diversity, and reconstruction regularization losses, decoded via an MCTS (Monte Carlo Tree Search)-guided search for human-interpretable skill-set prototypes.
+
+**Key Findings**:
+1. SRDQN/SeSRDQN outperform LLM baselines (Llama3, QWen2, GPT-4), greedy methods, and standard DNN utility models across 4–20 step recommendation horizons.
+2. SeSRDQN matches SRDQN's performance while providing prototype-based explanations, showing negligible explainability–performance trade-off.
+3. A 48-participant human user study rated SeSRDQN highest on Understanding (3.85/5), Trust (4.19/5), and Usability (4.57/5) versus a black-box Reward DNN and plain SRDQN.
+4. Fusing pre-trained embeddings (BERT, OpenAI, Qwen2, NV-Embed) did **not** meaningfully improve performance — task-specific learned embeddings were sufficient.
+
+**Advantages**:
+- Rigorous, large-scale empirical validation (805K+ real job postings)
+- Combines quantitative Q-learning performance with genuine human-centered explainability evaluation
+- Explicitly balances short-term reward against long-term (multi-step) career benefit — a dimension most literature-review-style papers don't model computationally
+
+**Limitations**:
+- Not gender- or women-focused; general-purpose skill recommendation
+- Computationally heavy (deep RL + MCTS) compared to lightweight LLM-prompting approaches
+- Requires large historical job-posting datasets to train the salary/difficulty estimators, which SkillHer's Groq-LLM approach does not have access to
+
+**Relevance to SkillHer**: This paper is the strongest technical/algorithmic benchmark in the review — while Papers 1–10 mostly survey or evaluate existing AI-in-education systems, Paper 11 is a full end-to-end recommendation architecture with quantified performance and an explainability user study. It validates SkillHer's core premise (personalized, explainable skill recommendation) from a deep-RL angle, and its explainability findings (prototype-based reasoning, user trust scores) support SkillHer's simpler Groq-LLM based reasoning as a lighter-weight but conceptually aligned alternative for delivering "explainable" recommendations at lower infrastructure cost.
+
+**Relevance Score: 8/10**
+
+</details>
+
 ## Comparative Analysis Table
 
-| Paper    | Women Skill Development | Skill Recommendation | Personalized Learning | Skill Gap Analysis | Learning Analytics | Adaptive Learning | AI Assistance | Women Empowerment | Relevance Score |
-| -------- | ----------------------- | --------------------- | ---------------------- | -------------------- | -------------------- | ------------------- | --------------- | -------------------- | ---------------- |
-| Paper 1  | Yes                      | Partial                | Partial                 | No                    | No                    | No                   | Yes              | Yes                   | 9/10              |
-| Paper 2  | Partial                  | Partial                | Yes                     | Partial               | No                    | No                   | Yes              | Partial                | 8/10              |
-| Paper 3  | Yes                      | No                      | Partial                 | No                    | No                    | No                   | Partial          | Yes                   | 9/10              |
-| Paper 4  | Yes                      | No                      | No                      | No                    | No                    | No                   | Partial          | Yes                   | 8/10              |
-| Paper 5  | Partial                  | Yes                     | Yes                     | Partial               | Yes                   | Yes                  | Yes              | No                    | 9/10              |
-| Paper 6  | Partial                  | Yes                     | Yes                     | Partial               | Yes                   | Partial              | Yes              | No                    | 9/10              |
-| Paper 7  | Partial                  | Yes                     | Yes                     | Partial               | Partial               | Yes                  | Yes              | No                    | 8/10              |
-| Paper 8  | Partial                  | Yes                     | Yes                     | Yes                   | Partial               | Partial              | Yes              | No                    | 8/10              |
-| Paper 9  | Partial                  | Partial                | Yes                     | Partial               | Partial               | Yes                  | Yes              | No                    | 8/10              |
-| Paper 10 | Partial                  | Yes                     | Yes                     | Partial               | Yes                   | Yes                  | Yes              | No                    | 9/10              |
+| Paper | Methodology Type | Women Skill Development | Skill Recommendation | Personalized Learning | Skill Gap Analysis | Learning Analytics | Adaptive Learning | AI Assistance | Women Empowerment | Relevance Score |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Paper 1 | Scoping Review (Qualitative) | Yes | Partial | Partial | No | No | No | Yes | Yes | 9/10 |
+| Paper 2 | Mixed-Methods + Predictive Analytics | Partial | Partial | Yes | Partial | No | No | Yes | Partial | 8/10 |
+| Paper 3 | Applied Study + AI-Assisted Assessment | Yes | No | Partial | No | No | No | Partial | Yes | 9/10 |
+| Paper 4 | Mixed-Methods + AI Analytics | Yes | No | No | No | No | No | Partial | Yes | 8/10 |
+| Paper 5 | Systematic Review + ML/NLP (Cognitive Modeling) | Partial | Yes | Yes | Partial | Yes | Yes | Yes | No | 9/10 |
+| Paper 6 | Systematic Review + Meta-Analysis | Partial | Yes | Yes | Partial | Yes | Partial | Yes | No | 9/10 |
+| Paper 7 | Systematic Review + DL/NLP/RL | Partial | Yes | Yes | Partial | Partial | Yes | Yes | No | 8/10 |
+| Paper 8 | Literature Review (Qualitative, Barrier Analysis) | Partial | Yes | Yes | Yes | Partial | Partial | Yes | No | 8/10 |
+| Paper 9 | Literature Review + ML (Classification: Decision Trees, Neural Nets) | Partial | Partial | Yes | Partial | Partial | Yes | Yes | No | 8/10 |
+| Paper 10 | NLP + ML Recommendation System (Applied) | Partial | Yes | Yes | Partial | Yes | Yes | Yes | No | 9/10 |
+| **Paper 11** | **Deep Reinforcement Learning (Multi-objective DQN) + Explainable AI (Prototype Learning)** | No | Yes | Yes | Partial | Yes | Yes | Yes | No | 8/10 |
 
 *Note: "Yes" = strong focus, "Partial" = discussed indirectly, "No" = not a major focus*
 
+## Methodology Distribution Across All 11 Papers
+
+| Methodology Category | Papers |
+|---|---|
+| Literature/Scoping Review (Qualitative) | Papers 1, 8 |
+| Mixed-Methods (Survey + Applied Study) | Papers 2, 3, 4 |
+| Systematic Review + Meta-Analysis | Papers 6, 9 |
+| Systematic Review + ML/NLP/DL/RL techniques (survey of techniques, not original implementation) | Papers 5, 7 |
+| NLP + ML-based Recommendation System (original implementation) | Paper 10 |
+| **Deep Reinforcement Learning + Explainable AI (original implementation)** | **Paper 11** |
+
+**Why this matters:** Paper 11 is the only paper in the set that uses **Deep RL** as its core method — this fills a methodological gap, since Papers 1–10 lean almost entirely on classification/clustering-style ML, NLP, or pure literature synthesis. Its inclusion demonstrates the review covers the *full spectrum* of AI techniques applied to skill/career recommendation — supervised ML, NLP, and sequential decision-making (RL) approaches — even though SkillHer itself implements a lighter-weight Groq-LLM approach rather than RL.
+
 ## Research Gap Analysis
 
-Based on the review of the 10 selected papers, the following research gaps have been identified:
+Based on the review of the 11 selected papers, the following research gaps have been identified:
 
 ### Gap 1: Lack of Integrated Women-Focused Platforms Combining Skill Assessment, Personalized Learning, and Mentorship
-- **Evidence from literature**: Papers 1, 3, and 4 highlight effective isolated interventions (skill assessment in Paper 3, personalized learning in Papers 5-7, mentorship in Papers 3 and 4), but none combine all three elements in a unified platform specifically designed for women's career development.
+- **Evidence from literature**: Papers 1, 3, and 4 highlight effective isolated interventions (skill assessment in Paper 3, personalized learning in Papers 5-7, mentorship in Papers 3 and 4), but none combine all three elements in a unified platform specifically designed for women's career development. Paper 11 further confirms this — its deep RL recommendation architecture is powerful but entirely general-purpose, with no gender-specific design considerations.
 - **Impact on SkillHer**: Without an integrated approach, users must navigate multiple disconnected tools, reducing effectiveness and increasing cognitive load.
 - **Opportunity for innovation**: SkillHer can innovate by creating a seamless ecosystem where skill assessment results directly inform personalized learning paths, which are enhanced by mentorship matching, all within a single women-focused interface.
 
 ### Gap 2: Limited Longitudinal Studies on Career Outcomes of AI-Powered Interventions
-- **Evidence from literature**: Papers 1 and 6 specifically note the lack of longitudinal data, with only 12% of studies in Paper 1 tracking outcomes beyond 6 months, and Paper 6 focusing primarily on academic rather than career outcomes.
+- **Evidence from literature**: Papers 1 and 6 specifically note the lack of longitudinal data, with only 12% of studies in Paper 1 tracking outcomes beyond 6 months, and Paper 6 focusing primarily on academic rather than career outcomes. Paper 11, despite its rigor, evaluates outcomes only within simulated 4–20 step recommendation sequences rather than tracking real career/salary trajectories over months or years.
 - **Impact on SkillHer**: Without understanding long-term career impact, it's difficult to validate the platform's effectiveness in achieving its ultimate goal of advancing women's careers.
 - **Opportunity for innovation**: SkillHer can address this by incorporating longitudinal tracking mechanisms that monitor career progression, skill application, and advancement metrics over extended periods (1-3 years).
 
 ### Gap 3: Insufficient Attention to Intersectional Barriers in AI System Design
-- **Evidence from literature**: Paper 8 identifies ethical and privacy concerns in 83% of studies, but few address how AI systems might exacerbate disparities for women of different ethnicities, socioeconomic backgrounds, or geographic locations.
+- **Evidence from literature**: Paper 8 identifies ethical and privacy concerns in 83% of studies, but few address how AI systems might exacerbate disparities for women of different ethnicities, socioeconomic backgrounds, or geographic locations. Paper 11's salary/difficulty estimators are trained on aggregate job-posting data with no fairness auditing across gender or demographic lines.
 - **Impact on SkillHer**: AI systems trained on non-diverse data may inadvertently perpetuate biases, limiting effectiveness for underrepresented subgroups of women.
 - **Opportunity for innovation**: SkillHer can innovate by implementing bias detection and mitigation strategies, ensuring diverse training data, and providing customizable interfaces that accommodate different cultural contexts and accessibility needs.
 
 ### Gap 4: Gap Between Technical AI Capabilities and Practical Implementation in Real-World Contexts
-- **Evidence from literature**: Papers 5-7 show promising technical results in controlled environments, but Papers 6 and 8 note implementation challenges including faculty readiness (61%), integration difficulties (49%), and resource requirements (48%).
+- **Evidence from literature**: Papers 5-7 show promising technical results in controlled environments, but Papers 6 and 8 note implementation challenges including faculty readiness (61%), integration difficulties (49%), and resource requirements (48%). Paper 11's SeSRDQN/MCTS pipeline, while highly effective, requires substantial computational infrastructure (805K+ training postings, iterative deep RL training) that is impractical for a lean, rapidly-deployable student project like SkillHer.
 - **Impact on SkillHer**: Technically sophisticated AI features may fail in practice if they require excessive computational resources, specialized expertise, or disruptive changes to existing workflows.
-- **Opportunity for innovation**: SkillHer can focus on practical implementation by designing for scalability, providing comprehensive training resources, ensuring compatibility with existing systems, and offering phased adoption pathways.
+- **Opportunity for innovation**: SkillHer can focus on practical implementation by designing for scalability, providing comprehensive training resources, ensuring compatibility with existing systems, and offering phased adoption pathways — using a fast, lightweight Groq-hosted LLM instead of training a custom deep RL model from scratch.
 
 ### Gap 5: Limited Focus on Skill Transfer and Real-World Application of Learned Competencies
-- **Evidence from literature**: Papers 5, 6, and 9 primarily measure learning outcomes within educational contexts (course completion, grades, knowledge retention) rather than transfer to workplace performance or career advancement.
+- **Evidence from literature**: Papers 5, 6, and 9 primarily measure learning outcomes within educational contexts (course completion, grades, knowledge retention) rather than transfer to workplace performance or career advancement. Paper 11 addresses long-term salary/difficulty trade-offs computationally but does not track whether recommended skills were actually applied on the job.
 - **Impact on SkillHer**: Users may acquire skills through the platform but struggle to apply them in real-world career situations without explicit support for skill transfer.
 - **Opportunity for innovation**: SkillHer can bridge this gap by incorporating workplace simulation exercises, project-based learning opportunities, and partnerships with organizations for practical skill application experiences.
 
@@ -609,7 +672,7 @@ SkillHer addresses the identified research gaps through a comprehensive technica
 - **Styling**: Tailwind CSS for responsive, accessible, and rapidly customizable UI components
 - **Backend**: Django REST Framework for secure, scalable API development with excellent documentation capabilities
 - **Authentication**: JWT-based secure authentication system with refresh token rotation for enhanced security
-- **AI Engine**: Groq LLM for fast, efficient language model inference enabling real-time personalized interactions
+- **AI Engine**: Groq LLM (LLaMA 3) for fast, efficient language model inference enabling real-time personalized interactions
 - **Database**: PostgreSQL for reliable data storage with support for complex queries and relationships
 - **Core Components**:
   - AI Skill Assessment Engine: Evaluates current competencies through adaptive testing and identifies skill gaps
@@ -671,18 +734,19 @@ SkillHer contributes to the field by:
 3. **Dynamic Skill-To-Career Pathway Mapping**: Creating adaptive learning paths that evolve not just based on learning performance, but also on changing career goals and market demands.
 4. **Longitudinal Impact Measurement System**: Moving beyond course completion metrics to track actual career progression and skill application over extended periods.
 5. **Women-Centered Design Methodology**: Incorporating feminist design principles that prioritize accessibility, safety, community, and empowerment throughout the user experience.
+6. **Lightweight Explainable Recommendation via LLM Prompting**: Where Paper 11 achieves explainability through a heavyweight trained prototype layer and MCTS search, SkillHer achieves comparable transparency using Groq-hosted LLaMA 3's natural-language reasoning — a practical, low-infrastructure alternative suited to a deployable web platform rather than a research-scale RL system.
 
 ## Conclusion
 
-This literature review has examined the current state of research on AI applications in women's career development, personalized learning systems, and skill gap analysis through analysis of 10 peer-reviewed papers published between 2023-2026. The synthesis reveals both promising developments and significant gaps in existing approaches that SkillHer is uniquely positioned to address.
+This literature review has examined the current state of research on AI applications in women's career development, personalized learning systems, skill gap analysis, and explainable skill recommendation through analysis of 11 peer-reviewed papers published between 2023-2026. The synthesis reveals both promising developments and significant gaps in existing approaches that SkillHer is uniquely positioned to address.
 
-The reviewed literature confirms that AI technologies have demonstrated effectiveness in personalized learning (Papers 5-7, 9, 10), skill assessment (Papers 3, 5, 8), and career guidance (Papers 1, 2). However, critical limitations persist: fragmented approaches that isolate these components, insufficient longitudinal validation of career outcomes, inadequate attention to intersectional barriers in AI design, challenges in practical implementation, and limited focus on real-world skill transfer.
+The reviewed literature confirms that AI technologies have demonstrated effectiveness in personalized learning (Papers 5-7, 9, 10), skill assessment (Papers 3, 5, 8), career guidance (Papers 1, 2), and — with the addition of Paper 11 — long-term, explainable skill recommendation via deep reinforcement learning. However, critical limitations persist: fragmented approaches that isolate these components, insufficient longitudinal validation of career outcomes, inadequate attention to intersectional barriers in AI design, challenges in practical implementation, and limited focus on real-world skill transfer. Notably, none of the 11 papers — including the technically rigorous Paper 11 — combine skill assessment, explainable AI-driven recommendation, real-world content aggregation, and a women-focused design into a single deployed system.
 
-SkillHer responds to these gaps through an integrated technical architecture combining React, TypeScript, Tailwind CSS, Django, Django REST Framework, JWT authentication, and Groq AI to deliver a comprehensive women-focused skill development platform. By uniting skill assessment, personalized learning recommendations, learning resource curation, career guidance, and mentorship within a single ethical AI framework, SkillHer moves beyond the limitations of existing fragmented solutions.
+SkillHer responds to these gaps through an integrated technical architecture combining React, TypeScript, Tailwind CSS, Django, Django REST Framework, JWT authentication, and Groq AI (LLaMA 3) to deliver a comprehensive women-focused skill development platform. By uniting skill assessment, personalized learning recommendations, learning resource curation, career guidance, and mentorship within a single ethical AI framework, SkillHer moves beyond the limitations of existing fragmented solutions.
 
 The platform's innovation lies not just in its technical implementation, but in its holistic approach to women's career development—recognizing that skill acquisition must be connected to career advancement, supported by community, and validated through real-world application. Through longitudinal tracking, bias mitigation strategies, and practical skill transfer mechanisms, SkillHer aims to create measurable impact on women's career progression and representation in leadership and technical fields.
 
-As AI continues to evolve, platforms like SkillHer represent the next generation of educational technology—one that combines technological sophistication with deep understanding of the human and systemic factors that influence career development. By grounding its design in current research while innovating to address identified gaps, SkillHer offers a promising pathway toward more equitable and effective women's skill development in the AI era.
+As AI continues to evolve, platforms like SkillHer represent the next generation of educational technology—one that combines technological sophistication with deep understanding of the human and systemic factors that influence career development. By grounding its design in current research (including state-of-the-art deep RL recommendation architectures like Paper 11) while innovating to address identified gaps, SkillHer offers a promising pathway toward more equitable and effective women's skill development in the AI era.
 
 ## IEEE References
 
@@ -706,7 +770,9 @@ As AI continues to evolve, platforms like SkillHer represent the next generation
 
 [10] R. Sajja, Y. Sermet, M. Cikmaz, D. Cwiertny, and I. Demir, "Artificial intelligence-enabled intelligent assistant for personalized and adaptive learning in higher education," *Information*, vol. 15, no. 10, art. no. 596, Oct. 2024, doi: 10.3390/info15100596.
 
+[11] Y. Sun, Y. Ji, H. Zhu, F. Zhuang, Q. He, and H. Xiong, "Market-aware long-term job skill recommendation with explainable deep reinforcement learning," *ACM Transactions on Information Systems*, vol. 43, no. 2, art. no. 46, Jan. 2025, doi: 10.1145/3704998.
+
 ---
 
 *Literature Review & Project Objectives — Prepared for the SkillHer Project*
-*Version: 1.0*
+*Version: 2.0 — Updated with Paper 11 (Deep RL / Explainable AI Benchmark)*
